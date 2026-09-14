@@ -18,7 +18,7 @@ export default function Guestbook() {
 
   const loadEntries = useCallback(async () => {
     const { data, error } = await supabase
-      .from("portfolio_guestbook")
+      .from("guestbook")
       .select("id,name,message,created_at")
       .order("created_at", { ascending: false })
       .limit(20);
@@ -43,7 +43,7 @@ export default function Guestbook() {
 
     setSubmitting(true);
     setStatus("");
-    const { error } = await supabase.from("portfolio_guestbook").insert({ name, message });
+    const { error } = await supabase.from("guestbook").insert({ name, message });
 
     if (error) setStatus("Your note could not be saved. Please try again.");
     else {
