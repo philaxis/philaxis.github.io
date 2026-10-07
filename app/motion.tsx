@@ -5,15 +5,16 @@ import { type RefObject, useEffect, useRef } from "react";
 declare global {
   interface Window {
     __motionReady?: boolean;
+    __fontsReady?: Promise<void>;
   }
 }
 
-/** True when the boot script decided this visit animates (motion allowed, JS alive in time). */
+/** True when the boot script decided this visit animates (JS alive in time). */
 export const canAnimate = () => document.documentElement.classList.contains("motion");
 
 /**
  * Runs tick(t) every frame, t looping over `period` ms, only while `ref` is on screen.
- * Never runs under reduced motion, so the server-rendered end frame stays.
+ * Without JS the server-rendered end frame stays.
  */
 export function useLoop(ref: RefObject<Element | null>, period: number, tick: (t: number) => void) {
   const tickRef = useRef(tick);

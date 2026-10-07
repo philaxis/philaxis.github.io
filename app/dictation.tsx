@@ -93,14 +93,23 @@ export default function Dictation({ lines, replay }: { lines: string[][]; replay
     if (!canAnimate() || !(root.classList.contains("dictating") || replay)) return;
     setMode("run");
     setShown(0);
-    const timers = phrases.map((_, i) => setTimeout(() => setShown(i + 1), START + i * STEP));
-    timers.push(
-      setTimeout(() => {
-        setMode("done");
-        root.classList.remove("dictating");
-      }, START + phrases.length * STEP + 120),
-    );
-    return () => timers.forEach(clearTimeout);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    let live = true;
+    // start once the fonts are in, so the first letters aren't typed in the fallback face
+    void (window.__fontsReady ?? Promise.resolve()).then(() => {
+      if (!live) return;
+      phrases.forEach((_, i) => timers.push(setTimeout(() => setShown(i + 1), START + i * STEP)));
+      timers.push(
+        setTimeout(() => {
+          setMode("done");
+          root.classList.remove("dictating");
+        }, START + phrases.length * STEP + 120),
+      );
+    });
+    return () => {
+      live = false;
+      timers.forEach(clearTimeout);
+    };
     // runs once per mount; the parent remounts this per language
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

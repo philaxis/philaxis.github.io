@@ -28,10 +28,14 @@ export const viewport: Viewport = {
   ],
 };
 
-// Runs before paint. "motion" lets CSS hold back text that JS will type or stream in;
+// Runs before paint. Motion ignores the OS reduced-motion flag on purpose: Windows turns it on
+// whenever "Animation effects" is off, which hid every animation (user report, 2026-10-07).
+// "fonts-wait" keeps the page hidden until the web fonts land (max 1.2s), so text never
+// visibly swaps from the fallback face.
+// "motion" lets CSS hold back text that JS will type or stream in;
 // "dictating" hides the hero headline until it is dictated. If the client bundle has not
 // hydrated within 4s, both are dropped so everything simply shows.
-const boot = `(function(){try{var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: no-preference)').matches){d.classList.add('motion','dictating');setTimeout(function(){if(!window.__motionReady)d.classList.remove('motion');d.classList.remove('dictating')},4000)}}catch(e){}})();`;
+const boot = `(function(){try{var d=document.documentElement;d.classList.add('motion','dictating','fonts-wait');var w=new Promise(function(r){setTimeout(r,1200);document.fonts&&document.fonts.ready.then(r)});window.__fontsReady=w.then(function(){d.classList.remove('fonts-wait')});setTimeout(function(){if(!window.__motionReady)d.classList.remove('motion');d.classList.remove('dictating')},4000)}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

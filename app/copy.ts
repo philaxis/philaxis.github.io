@@ -25,7 +25,7 @@ export const COPY = {
     title: "필락시스 · philaxis",
     hero: [
       ["흐름", "끊기는", "게", "싫어서"],
-      ["만든", "것들."],
+      ["만든", "것들"],
     ],
     lede: "생각이 손보다 빠를 때가 많아서, 그 사이에 걸리는 걸 하나씩 치웁니다.",
     sections: {
@@ -86,7 +86,7 @@ export const COPY = {
     title: "philaxis",
     hero: [
       ["Things", "I", "built"],
-      ["because", "I", "hate", "losing", "flow."],
+      ["because", "I", "hate", "losing", "flow"],
     ],
     lede: "My head usually runs ahead of my hands, so I keep clearing what gets in between.",
     sections: {

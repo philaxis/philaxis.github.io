@@ -45,9 +45,16 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  background: var(--bg);
+}
+
+/* hidden only while the web fonts load (boot script, max 1.2s) */
+.fonts-wait body {
+  opacity: 0;
 }
 
 body {
+  transition: opacity 0.25s ease;
   margin: 0;
   background: var(--bg);
   color: var(--ink);
@@ -226,7 +233,7 @@ a:hover {
 .caret::after {
   content: "";
   position: absolute;
-  left: 0.06em;
+  left: 0.1em;
   bottom: 0.07em;
   width: max(0.15em, 10px);
   height: max(0.15em, 10px);
@@ -252,20 +259,17 @@ a:hover {
   color: var(--muted);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .caret::after {
-    animation: blink 2.4s ease-in-out infinite;
-  }
+.caret::after {
+  animation: blink 2.4s ease-in-out infinite;
+}
 
-  .dictation[data-mode="run"] .caret::after {
-    animation: none;
-  }
+.dictation[data-mode="run"] .caret::after {
+  animation: none;
+}
 
-  .dictation[data-mode="run"] .wave path {
-    stroke-dasharray: 1;
-    animation: draw 1.7s cubic-bezier(0.3, 0.1, 0.3, 1) both;
-  }
-
+.dictation[data-mode="run"] .wave path {
+  stroke-dasharray: 1;
+  animation: draw 1.7s cubic-bezier(0.3, 0.1, 0.3, 1) both;
 }
 
 @keyframes blink {
@@ -1231,23 +1235,21 @@ a:hover {
   fill: color-mix(in srgb, var(--ink) 7%, var(--bg));
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .motion .desk[data-in] .key {
-    animation: key-lit 0.7s ease backwards;
-    animation-delay: calc(2.6s + var(--d));
-  }
+.motion .desk[data-in] .key {
+  animation: key-lit 0.7s ease backwards;
+  animation-delay: calc(2.6s + var(--d));
+}
 
-  .scr-caret {
-    animation: blink 2.4s ease-in-out infinite;
-  }
+.scr-caret {
+  animation: blink 2.4s ease-in-out infinite;
+}
 
-  .g-node.hl {
-    animation: node-pulse 3s ease-in-out infinite;
-  }
+.g-node.hl {
+  animation: node-pulse 3s ease-in-out infinite;
+}
 
-  .desk-stage:not([data-live]) * {
-    animation-play-state: paused;
-  }
+.desk-stage:not([data-live]) * {
+  animation-play-state: paused;
 }
 
 @keyframes key-lit {
@@ -1439,14 +1441,12 @@ a:hover {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .motion .mulbit-demo[data-pasted] .field {
-    animation: flash 0.9s var(--ease);
-  }
+.motion .mulbit-demo[data-pasted] .field {
+  animation: flash 0.9s var(--ease);
+}
 
-  .nm::after {
-    animation: flow 0.9s linear infinite;
-  }
+.nm::after {
+  animation: flow 0.9s linear infinite;
 }
 
 @keyframes flash {
@@ -1460,12 +1460,6 @@ a:hover {
   to {
     -webkit-mask-position: 12px 0;
     mask-position: 12px 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nm::after {
-    transition: none;
   }
 }
 
