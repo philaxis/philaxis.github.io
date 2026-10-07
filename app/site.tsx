@@ -5,7 +5,6 @@ import { COPY, type Lang, LINKS } from "./copy";
 import LensDemo from "./demo-lens";
 import MulbitDemo from "./demo-mulbit";
 import RelDemo from "./demo-rel";
-import Desk from "./desk";
 import Dictation from "./dictation";
 import { useReveal } from "./motion";
 import { Typed } from "./text";
@@ -157,11 +156,6 @@ export default function Site() {
                 </li>
               ))}
             </ul>
-          </section>
-
-          <section className="wrap sec" aria-labelledby="h-bench">
-            <Heading id="h-bench" {...s.bench} />
-            <Desk c={t.desk} words={t.mulbit.demo.text} />
           </section>
         </div>
       </main>
