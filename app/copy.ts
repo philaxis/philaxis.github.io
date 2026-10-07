@@ -66,7 +66,6 @@ export const COPY = {
     },
     also: [
       { name: "Gemini Transcribe", line: "녹음 파일을 시간이 찍힌 TXT로", href: `${GH}/gemini-transcribe` },
-      { name: "Extract Highlight", line: "하이라이트를 제목 구조째 개요로", href: `${GH}/obsidian-extract-highlight` },
       { name: "History", line: "노트를 언제 만들고 고쳤는지 달력으로", href: `${GH}/history` },
       { name: "Topology Map", line: "Canvas 연결을 한눈에", href: `${GH}/topology-map` },
     ],
@@ -129,7 +128,6 @@ export const COPY = {
     },
     also: [
       { name: "Gemini Transcribe", line: "Recordings into timestamped TXT", href: `${GH}/gemini-transcribe` },
-      { name: "Extract Highlight", line: "Highlights into an outline, headings kept", href: `${GH}/obsidian-extract-highlight` },
       { name: "History", line: "A calendar of when notes were made and edited", href: `${GH}/history` },
       { name: "Topology Map", line: "Canvas connections at a glance", href: `${GH}/topology-map` },
     ],
