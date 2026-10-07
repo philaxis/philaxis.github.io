@@ -1,29 +1,18 @@
 {
-  "name": "philaxis-portfolio",
-  "version": "1.0.0",
+  "name": "philaxis.github.io",
   "private": true,
-  "description": "Personal site for Juhyeok Kim",
+  "description": "필락시스(philaxis)의 개인 사이트",
   "scripts": {
     "dev": "next dev",
     "build": "next build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/philaxis/philaxis.github.io.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/philaxis/philaxis.github.io/issues"
-  },
-  "homepage": "https://philaxis.github.io/",
   "dependencies": {
-    "@supabase/supabase-js": "^2.116.0",
-    "next": "^16.3.5",
+    "next": "^16.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "typescript": "^7.0.2"

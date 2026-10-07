@@ -1,9 +1,3 @@
-# philaxis.github.io
-
-Personal site for [Juhyeok Kim](https://github.com/philaxis), built with Next.js and Supabase.
-
-```sh
-cp .env.example .env.local
+필락시스(philaxis)의 개인 사이트. 흐름 끊기는 게 싫어서 만든 도구들을 모아 둡니다.
 npm install
 npm run dev
-```
