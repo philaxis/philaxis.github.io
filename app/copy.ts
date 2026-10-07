@@ -27,6 +27,8 @@ export const COPY = {
       ["흐름", "끊기는", "게", "싫어서"],
       ["만든", "것들"],
     ],
+    // phones: "흐름 끊기는 게 / 싫어서 만든 것들"
+    heroMobileBreak: 3,
     lede: "생각이 손보다 빠를 때가 많아서, 그 사이에 걸리는 걸 하나씩 치웁니다.",
     sections: {
       voice: { title: "손 대신 말로", sub: "voice → cursor" },
@@ -58,7 +60,7 @@ export const COPY = {
     },
     lens: {
       line: "마크다운 원문 그대로 쓰면서, 렌더링은 커서 옆에서.",
-      raw: ["## 회의", "- [ ] 할 일 정리", "- [x] 자료 보내기", "$E=mc^2$", "**굵게** 쓴 메모"],
+      raw: ["## 회의", "오늘 정한 것", "- [x] 자료 보내기", "- [ ] 할 일 정리", "$E=mc^2$", "**굵게** 쓴 메모", "> 다음 주에 다시"],
       gif: "실제 화면 GIF ↗",
     },
     also: [
@@ -88,6 +90,7 @@ export const COPY = {
       ["Things", "I", "built"],
       ["because", "I", "hate", "losing", "flow"],
     ],
+    heroMobileBreak: undefined as number | undefined,
     lede: "My head usually runs ahead of my hands, so I keep clearing what gets in between.",
     sections: {
       voice: { title: "Talk instead of type", sub: "voice → cursor" },
@@ -119,7 +122,7 @@ export const COPY = {
     },
     lens: {
       line: "Stay in raw Markdown; see it rendered right by your cursor.",
-      raw: ["## Meeting", "- [ ] to-do", "- [x] send files", "$E=mc^2$", "a **bold** note"],
+      raw: ["## Meeting", "What we decided", "- [x] send files", "- [ ] to-do", "$E=mc^2$", "a **bold** note", "> revisit next week"],
       gif: "Real screen GIF ↗",
     },
     also: [

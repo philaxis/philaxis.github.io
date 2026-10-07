@@ -48,8 +48,11 @@ function useMicWave(
         wavePath((i) => {
           const dx = px - (r.left + (i + 0.5) * SEG * sx);
           near[i] += (Math.exp(-(dx * dx) / (2 * 70 * 70)) * gy - near[i]) * 0.09;
-          const breath = REST + 0.07 * Math.sin(t * 1.1) + 0.05 * Math.sin(t * 2.3 + i * 1.7);
-          const speak = talk * (0.32 + 0.28 * Math.sin(t * 13 + i * 2.1));
+          // idle never goes flat: a swell travels along the line, and every few seconds
+          // a short murmur comes through, like someone thinking out loud near the mic
+          const breath = REST + 0.16 * Math.sin(t * 1.4 - i * 0.32) + 0.06 * Math.sin(t * 2.9 + i * 1.7);
+          const murmur = 0.55 * Math.max(0, Math.sin(t * 0.8)) ** 4;
+          const speak = Math.max(talk, murmur) * (0.32 + 0.28 * Math.sin(t * 13 + i * 2.1));
           return Math.min(breath + speak + near[i] * 0.85, 1.8);
         }),
       );
@@ -74,7 +77,16 @@ function useMicWave(
 type Mode = "static" | "run" | "done";
 
 /** The hero headline, dictated phrase by phrase with the glowing caret, over a live waveform. */
-export default function Dictation({ lines, replay }: { lines: string[][]; replay: boolean }) {
+export default function Dictation({
+  lines,
+  replay,
+  mobileBreak,
+}: {
+  lines: string[][];
+  replay: boolean;
+  /** index of the phrase that starts the second line on phones */
+  mobileBreak?: number;
+}) {
   const phrases = lines.flat();
   const text = lines.map((l) => l.join(" ")).join(" ");
   const [mode, setMode] = useState<Mode>("static");
@@ -128,8 +140,8 @@ export default function Dictation({ lines, replay }: { lines: string[][]; replay
               {line.map((phrase, pi) => {
                 const i = index++;
                 return (
-                  <span key={pi}>
-                    {pi > 0 && " "}
+                  <span key={pi} className={i === mobileBreak ? "m-br" : undefined}>
+                    {(pi > 0 || li > 0) && " "}
                     <span className={i < shown ? "phrase on" : "phrase"}>
                       {[...phrase].map((ch, ci) => (
                         <span className="ch" key={ci} style={{ transitionDelay: `${ci * 30}ms` }}>

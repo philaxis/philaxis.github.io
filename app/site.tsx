@@ -71,7 +71,7 @@ export default function Site() {
 
       <main>
         <section className="wrap hero">
-          <Dictation key={lang} lines={t.hero} replay={replay} />
+          <Dictation key={lang} lines={t.hero} replay={replay} mobileBreak={t.heroMobileBreak} />
           <p className="lede">{t.lede}</p>
         </section>
 

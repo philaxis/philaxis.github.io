@@ -199,6 +199,21 @@ a:hover {
   white-space: nowrap;
 }
 
+@media (max-width: 520px) {
+  .headline {
+    font-size: min(44px, 10.4vw);
+  }
+
+  .headline .line {
+    display: inline;
+  }
+
+  .headline .m-br::before {
+    content: "\A";
+    white-space: pre;
+  }
+}
+
 .ch {
   display: inline-block;
   transition:
@@ -770,18 +785,48 @@ a:hover {
 }
 
 .lens {
+  --rlh: 30px;
   position: absolute;
-  top: calc(var(--lh) / 2);
+  top: 0;
   right: 14px;
-  padding: 7px 14px;
+  width: min(58%, 250px);
+  height: calc(var(--win) * var(--rlh) + 2px);
+  overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--water) 40%, var(--line));
   border-radius: 8px;
   background: var(--bg);
   box-shadow: 0 10px 24px -16px color-mix(in srgb, var(--ink) 50%, transparent);
   font-size: 14px;
-  white-space: nowrap;
-  transform: translateY(calc(var(--at) * var(--lh) - 50%));
+  /* sits level with the window of lines it renders */
+  transform: translateY(calc((var(--top) + var(--win) / 2) * var(--lh) - 50%));
   transition: transform 0.45s var(--ease);
+}
+
+.lens-track {
+  transform: translateY(calc(var(--top) * var(--rlh) * -1));
+  transition: transform 0.45s var(--ease);
+}
+
+.lens-track li {
+  display: flex;
+  align-items: center;
+  height: var(--rlh);
+  padding-inline: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0.45;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.lens-track li.cur {
+  opacity: 1;
+  background: color-mix(in srgb, var(--glow) 9%, transparent);
+}
+
+.r-quote {
+  padding-left: 10px;
+  border-left: 2px solid color-mix(in srgb, var(--water) 60%, var(--line));
+  color: var(--muted);
 }
 
 .r-h {
