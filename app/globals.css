@@ -620,6 +620,294 @@ a:hover {
   opacity: 1;
 }
 
+/* flick: the second big block, mirrored so the demos alternate sides */
+
+.mulbit.flip {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+
+.mulbit.flip > * {
+  grid-column: 2;
+}
+
+.mulbit.flip > .flick-demo {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+}
+
+.cta .meta.note {
+  margin-top: 4px;
+}
+
+.flick-demo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 52px);
+  min-height: clamp(360px, 36vw, 500px);
+  padding: clamp(22px, 3vw, 44px);
+}
+
+.flick-demo:focus-visible {
+  border-radius: 12px;
+}
+
+.flick-line {
+  display: grid;
+  width: min(100%, 560px);
+  margin-inline: auto;
+  margin-bottom: calc(clamp(28px, 4vw, 52px) * -1 + 14px);
+}
+
+.flick-cap {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.flick-strip {
+  display: flex;
+  gap: 4px;
+  margin-block: 10px clamp(24px, 3vw, 36px);
+}
+
+.flick-strip span {
+  flex: 0 1 34px;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.flick-strip span[data-on] {
+  border-color: var(--water);
+  background: color-mix(in srgb, var(--glow) 40%, var(--bg));
+}
+
+.flick-map {
+  position: relative;
+  container-type: inline-size;
+  width: min(100%, 560px);
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(10px, 1.6vw, 20px);
+  padding-block: 10px 12px;
+}
+
+/* the column every row's landing cell is slid into */
+.flick-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--anchor) * 100cqw / var(--cols));
+  width: calc(100cqw / var(--cols));
+  border-inline: 1px dashed color-mix(in srgb, var(--water) 38%, var(--line));
+  background: color-mix(in srgb, var(--glow) 6%, transparent);
+}
+
+.flick-row {
+  position: relative;
+  width: max-content;
+  transform: translateX(calc((var(--anchor) - var(--cur)) * 100cqw / var(--cols)));
+  transition: transform 0.55s var(--ease);
+}
+
+.flick-label {
+  display: block;
+  padding-left: 4px;
+  margin-bottom: 4px;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: var(--muted);
+  transition: color 0.3s ease;
+}
+
+.flick-row[data-on] .flick-label {
+  color: var(--water);
+}
+
+.flick-cells {
+  display: flex;
+}
+
+.flick-cell {
+  width: calc(100cqw / var(--cols));
+  padding: 0 3px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.flick-desktop {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--bg);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.flick-desktop span {
+  position: absolute;
+  border-radius: 1.5px;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+
+.flick-cell:hover .flick-desktop,
+.flick-cell[data-land] .flick-desktop {
+  border-color: color-mix(in srgb, var(--muted) 70%, var(--line));
+}
+
+.flick-cell[aria-pressed="true"] .flick-desktop {
+  border-color: var(--water);
+  background: color-mix(in srgb, var(--glow) 14%, var(--bg));
+  box-shadow:
+    0 0 0 1px var(--water),
+    0 0 18px -2px color-mix(in srgb, var(--glow) 60%, transparent);
+}
+
+.flick-cell[aria-pressed="true"] .flick-desktop span {
+  background: color-mix(in srgb, var(--water) 55%, var(--bg));
+}
+
+.flick-hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+
+.flick-hand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.flick-mouse {
+  width: 34px;
+  height: 48px;
+  overflow: visible;
+}
+
+.flick-mouse .body {
+  fill: var(--bg);
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.flick-mouse .seam {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.flick-mouse .side {
+  fill: var(--line);
+  stroke: var(--muted);
+  stroke-width: 1;
+  transition:
+    fill 0.15s ease,
+    stroke 0.15s ease,
+    transform 0.12s var(--ease);
+}
+
+[data-held] .flick-mouse .side {
+  fill: var(--glow);
+  stroke: var(--water);
+  transform: translateX(1.5px);
+}
+
+.flick-hint {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.flick-hint b {
+  display: inline-block;
+  min-width: 2.2em;
+  font-weight: 500;
+}
+
+[data-held] .flick-hint {
+  color: var(--water);
+}
+
+.flick-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-areas: ". up ." "left down right";
+  gap: 5px;
+}
+
+.flick-pad button {
+  display: grid;
+  place-items: center;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--bg);
+  box-shadow: 0 2px 0 var(--line);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.12s var(--ease),
+    box-shadow 0.12s var(--ease),
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.flick-pad button:nth-child(1) {
+  grid-area: left;
+}
+
+.flick-pad button:nth-child(2) {
+  grid-area: up;
+}
+
+.flick-pad button:nth-child(3) {
+  grid-area: down;
+}
+
+.flick-pad button:nth-child(4) {
+  grid-area: right;
+}
+
+.flick-pad button:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+.flick-pad button[data-lit],
+.flick-pad button:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--line);
+  background: color-mix(in srgb, var(--glow) 16%, var(--bg));
+  border-color: color-mix(in srgb, var(--water) 55%, var(--line));
+  color: var(--water);
+}
+
 /* the two medium blocks */
 
 .pair {
@@ -1549,6 +1837,20 @@ a:hover {
     margin-top: 32px;
   }
 
+  .mulbit.flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mulbit.flip > *,
+  .mulbit.flip > .flick-demo {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .mulbit.flip > .flick-demo {
+    margin-top: 32px;
+  }
+
   .pair {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1617,6 +1919,15 @@ a:hover {
   .mulbit-demo {
     min-height: 0;
     gap: 28px;
+  }
+
+  .flick-demo {
+    min-height: 0;
+    padding-inline: 14px;
+  }
+
+  .flick-cell {
+    padding: 0 2px;
   }
 
   .keycap {

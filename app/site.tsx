@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { COPY, type Lang, LINKS } from "./copy";
+import FlickDemo from "./demo-flick";
 import LensDemo from "./demo-lens";
 import MulbitDemo from "./demo-mulbit";
 import RelDemo from "./demo-rel";
@@ -106,6 +107,39 @@ export default function Site() {
                   </a>
                 </div>
                 <p className="meta">Rust · Windows 10/11 · v0.1.3</p>
+              </div>
+            </article>
+          </section>
+
+          <section className="wrap sec" aria-labelledby="h-screens">
+            <Heading id="h-screens" {...s.screens} />
+            <article className="mulbit flip">
+              <h3 className="mulbit-name">
+                {t.flick.name}
+                {lang === "ko" && <span className="alt">{t.flick.alt}</span>}
+              </h3>
+              <p className="pitch">{t.flick.pitch}</p>
+              <FlickDemo d={t.flick.demo} />
+              <ul className="facts">
+                {t.flick.facts.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+              <div className="cta">
+                <div className="cta-row">
+                  <a className="btn" href={LINKS.flickExe}>
+                    {t.flick.download}
+                    <span aria-hidden="true">↓</span>
+                  </a>
+                  <a className="mono-link" href={LINKS.flickSite}>
+                    {t.flick.site}
+                  </a>
+                  <a className="mono-link" href={LINKS.flick}>
+                    GitHub ↗
+                  </a>
+                </div>
+                <p className="meta">{t.flick.meta}</p>
+                <p className="meta note">{t.flick.note}</p>
               </div>
             </article>
           </section>

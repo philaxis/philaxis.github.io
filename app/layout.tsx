@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 const title = "필락시스 · philaxis";
-const description = "흐름 끊기는 게 싫어서 만든 것들. 말하면 커서 자리에 써 주는 물빛, 아무 데나 써 두고 나중에 찾는 노트 도구.";
+const description = "흐름 끊기는 게 싫어서 만든 것들. 말하면 커서 자리에 써 주는 물빛, 가상 데스크톱을 격자로 넘겨 다니는 Flick, 아무 데나 써 두고 나중에 찾는 노트 도구.";
 const avatar = "https://avatars.githubusercontent.com/u/91249027?v=4";
 
 export const metadata: Metadata = {
