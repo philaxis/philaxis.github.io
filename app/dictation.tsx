@@ -84,7 +84,7 @@ export default function Dictation({
 }: {
   lines: string[][];
   replay: boolean;
-  /** index of the phrase that starts the second line on phones */
+  /** index of the phrase that starts the second line (overrides the line split) */
   mobileBreak?: number;
 }) {
   const phrases = lines.flat();
@@ -131,7 +131,7 @@ export default function Dictation({
 
   return (
     <div className="dictation" data-mode={mode}>
-      <h1 className="headline">
+      <h1 className={mobileBreak === undefined ? "headline" : "headline rebreak"}>
         <span className="sr-only">{text}</span>
         <span aria-hidden="true">
           {mode === "run" && shown === 0 && caret}

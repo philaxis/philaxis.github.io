@@ -27,7 +27,7 @@ export const COPY = {
       ["흐름", "끊기는", "게", "싫어서"],
       ["만든", "것들"],
     ],
-    // phones: "흐름 끊기는 게 / 싫어서 만든 것들"
+    // "흐름 끊기는 게 / 싫어서 만든 것들"
     heroMobileBreak: 3,
     lede: "생각이 손보다 빠를 때가 많아서, 그 사이에 걸리는 걸 하나씩 치웁니다.",
     sections: {
@@ -41,7 +41,7 @@ export const COPY = {
       pitch: "Windows에서 말하면, 커서 자리에 바로 써집니다.",
       facts: [
         "내 PC에서 오프라인으로 돌아요. Gemini 키는 넣고 싶을 때만.",
-        "G 키를 꾹 누른 채 말하고, 떼면 끝. 마우스 버튼에 걸어도 돼요.",
+        "G를 길게 누르면 시작, 다시 길게 누르면 끝. 짧게 치면 그냥 g예요. 마우스 버튼에 걸어도 돼요.",
         "받아 적은 글은 커서 자리에 바로 붙여 넣어요.",
       ],
       download: "내려받기 (Windows)",
@@ -49,7 +49,8 @@ export const COPY = {
       demo: {
         channel: "# 팀-채널",
         text: "회의록 정리해서 팀 채널에 올려줘",
-        hold: "꾹",
+        hold: "길게",
+        listening: "듣는 중",
         pasted: "붙여넣음",
       },
     },
@@ -103,7 +104,7 @@ export const COPY = {
       pitch: "Talk on Windows, and the words land right where your cursor is.",
       facts: [
         "Runs offline on your own PC. A Gemini key is optional.",
-        "Hold G, talk, let go. A mouse button works too.",
+        "Hold G to start, hold it again to stop. A quick tap still types g. A mouse button works too.",
         "When it's done, it pastes right at your cursor.",
       ],
       download: "Download for Windows",
@@ -112,6 +113,7 @@ export const COPY = {
         channel: "# team-channel",
         text: "summarize the meeting notes and post them to the team channel",
         hold: "hold",
+        listening: "listening",
         pasted: "pasted",
       },
     },

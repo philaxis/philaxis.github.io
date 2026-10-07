@@ -199,18 +199,19 @@ a:hover {
   white-space: nowrap;
 }
 
+/* "흐름 끊기는 게 / 싫어서 만든 것들" at every width */
+.headline.rebreak .line {
+  display: inline;
+}
+
+.headline .m-br::before {
+  content: "\A";
+  white-space: pre;
+}
+
 @media (max-width: 520px) {
   .headline {
     font-size: min(44px, 10.4vw);
-  }
-
-  .headline .line {
-    display: inline;
-  }
-
-  .headline .m-br::before {
-    content: "\A";
-    white-space: pre;
   }
 }
 
@@ -530,8 +531,30 @@ a:hover {
   transition: opacity 0.2s ease;
 }
 
-[data-pressed] .key-hint {
+[data-pressed] .key-hint,
+[data-rec] .key-hint {
   opacity: 1;
+}
+
+/* long-press: a bar fills under the key while it is held */
+.keycap {
+  position: relative;
+}
+
+.keycap::after {
+  content: "";
+  position: absolute;
+  inset: auto 10px 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--water);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+[data-pressed] .keycap::after {
+  transform: scaleX(1);
+  transition: transform 0.6s linear;
 }
 
 .demo-wave {
@@ -579,7 +602,7 @@ a:hover {
   color: var(--muted);
 }
 
-[data-pressed] .field {
+[data-rec] .field {
   border-color: color-mix(in srgb, var(--water) 45%, var(--line));
 }
 
