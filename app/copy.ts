@@ -2,6 +2,9 @@
 
 export type Lang = "ko" | "en";
 
+/** localStorage key for the chosen language, shared by the home page and the capture pages. */
+export const LANG_KEY = "lang";
+
 const GH = "https://github.com/philaxis";
 
 export const LINKS = {
