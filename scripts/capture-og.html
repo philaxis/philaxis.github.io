@@ -1,0 +1,73 @@
+<!doctype html>
+<!--
+  Share image for /capture/ (1200×630). Open as file:// with ?lang=ko or ?lang=en, set the
+  viewport to 1200×630 in a headless browser, wait for fonts, and screenshot to
+  public/capture/og-<lang>.png. Re-shoot when public/capture/icon.png changes.
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;400&family=IBM+Plex+Mono:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative;
+        padding: 84px 96px;
+        background: #f6f8fa;
+        color: #0d1b2a;
+        font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+        word-break: keep-all;
+      }
+      .row { display: flex; align-items: center; gap: 36px; }
+      img { width: 132px; height: 132px; border-radius: 22%; box-shadow: 0 14px 30px -18px rgba(13, 27, 42, 0.6); }
+      h1 { font-family: Hahmlet, serif; font-weight: 400; font-size: 104px; line-height: 1; letter-spacing: -0.05em; }
+      .alt { margin-top: 14px; font-family: "IBM Plex Mono", monospace; font-size: 22px; letter-spacing: 0.04em; color: #5a6a7b; }
+      p { margin-top: 64px; max-width: 980px; font-size: 44px; font-weight: 500; line-height: 1.38; letter-spacing: -0.015em; }
+      .cut { padding: 0 6px; margin: 0 -6px; border: 2.5px dashed #1a8fc0; border-radius: 4px; }
+      .foot {
+        position: absolute; left: 96px; right: 96px; bottom: 64px;
+        display: flex; justify-content: space-between;
+        font-family: "IBM Plex Mono", monospace; font-size: 22px; letter-spacing: 0.04em; color: #5a6a7b;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <img src="../public/capture/icon.png" alt="" />
+      <div>
+        <h1 id="name"></h1>
+        <div class="alt" id="alt"></div>
+      </div>
+    </div>
+    <p id="pitch"></p>
+    <div class="foot"><span id="url"></span><span>philaxis</span></div>
+    <script>
+      const T = {
+        ko: {
+          name: "캡처 필굿",
+          alt: "CAPTURE philgood · Android",
+          pitch: '안드로이드 화면 일부를 <span class="cut">잘라</span>, 바로 붙여 넣거나 글자로 받습니다.',
+          url: "philaxis.github.io/capture",
+        },
+        en: {
+          name: "CAPTURE philgood",
+          alt: "캡처 필굿 · Android",
+          pitch: '<span class="cut">Crop</span> part of your Android screen and paste it right away, as a picture or as text.',
+          url: "philaxis.github.io/capture/en",
+        },
+      };
+      const t = T[new URLSearchParams(location.search).get("lang")] || T.ko;
+      for (const k of ["name", "alt", "url"]) document.getElementById(k).textContent = t[k];
+      document.getElementById("pitch").innerHTML = t.pitch;
+      if (t.name.length > 8) document.getElementById("name").style.fontSize = "84px";
+    </script>
+  </body>
+</html>

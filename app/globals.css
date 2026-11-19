@@ -334,7 +334,8 @@ a:hover {
   margin-bottom: clamp(36px, 5vw, 64px);
 }
 
-.verb {
+.verb,
+.cap-verb {
   font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(30px, 3.4vw, 46px);
@@ -1934,5 +1935,830 @@ a:hover {
     width: 60px;
     height: 60px;
     font-size: 20px;
+  }
+}
+
+/* ---------------------------------------------------------------- capture philgood */
+
+/* KO/EN as links on the capture pages, same look as the home toggle */
+.lang a {
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: var(--muted);
+}
+
+.lang a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--water);
+  text-underline-offset: 4px;
+}
+
+.top .lang a:not([aria-current]) {
+  color: var(--muted);
+}
+
+.top .lang a:hover {
+  color: var(--water);
+}
+
+/* the demo: a phone with a lecture slide, and the notes it pastes into */
+
+.mulbit > .cap-demo {
+  grid-column: 2;
+  grid-row: 1 / span 4;
+}
+
+.cap-demo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 32px);
+  min-height: clamp(360px, 36vw, 500px);
+  padding: clamp(18px, 3vw, 40px);
+}
+
+.cap-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 40px);
+  align-items: center;
+}
+
+.cap-phone {
+  justify-self: center;
+  width: min(100%, 230px);
+  aspect-ratio: 9 / 18;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--bg);
+  box-shadow: 0 14px 32px -20px color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.cap-screen {
+  position: relative;
+  height: 100%;
+  border-radius: 19px;
+  overflow: hidden;
+  container-type: inline-size;
+  background: color-mix(in srgb, var(--ink) 3%, var(--bg));
+}
+
+.cap-status,
+.cap-app {
+  position: absolute;
+  top: 3.5%;
+  font-family: var(--mono);
+  font-size: 4.4cqw;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.cap-status {
+  left: 9%;
+}
+
+.cap-app {
+  right: 9%;
+}
+
+.cap-title {
+  position: absolute;
+  top: 13%;
+  left: 10%;
+  right: 10%;
+  font-family: var(--serif);
+  font-size: 7.6cqw;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.cap-bar {
+  position: absolute;
+  left: 10%;
+  height: 2.4cqw;
+  border-radius: 1.2cqw;
+  background: var(--line);
+}
+
+.cap-target {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  right: 10%;
+}
+
+.cap-line {
+  display: block;
+  font-size: 6.2cqw;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.cap-math {
+  display: block;
+  margin-top: 2.5cqw;
+  font-family: var(--serif);
+  font-size: 8.4cqw;
+  line-height: 1.2;
+}
+
+/* the box the pen drags: grows with --p, dims everything outside it */
+.cap-sel {
+  position: absolute;
+  top: 37%;
+  left: 6%;
+  width: calc(88% * var(--p));
+  height: calc(26% * var(--p));
+  border: 1.5px dashed var(--water);
+  border-radius: 3px;
+  opacity: 0;
+  /* the spread stays put; only the colour fades, so the dim never grows in as a frame */
+  box-shadow: 0 0 0 999px transparent;
+  transition:
+    opacity 0.25s ease,
+    box-shadow 0.3s ease;
+}
+
+[data-phase="select"] .cap-sel,
+[data-phase="snap"] .cap-sel {
+  opacity: 1;
+  box-shadow: 0 0 0 999px color-mix(in srgb, var(--ink) 32%, transparent);
+}
+
+[data-phase="snap"] .cap-sel {
+  border-style: solid;
+  animation: cap-snap 0.35s var(--ease);
+}
+
+[data-phase="paste"] .cap-sel {
+  opacity: 0.5;
+}
+
+@keyframes cap-snap {
+  from {
+    background: color-mix(in srgb, #fff 75%, transparent);
+  }
+}
+
+.cap-pen {
+  position: absolute;
+  top: calc(37% + 26% * var(--p));
+  left: calc(6% + 88% * var(--p));
+  width: 8cqw;
+  height: 32cqw;
+  transform: translate(-50%, -2%) rotate(-32deg);
+  transform-origin: 50% 2%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+[data-phase="select"] .cap-pen {
+  opacity: 1;
+}
+
+.cap-pen-body {
+  fill: var(--ink);
+}
+
+.cap-pen-tip {
+  fill: var(--muted);
+}
+
+.cap-pen-btn {
+  fill: var(--bg);
+}
+
+.cap-fab {
+  position: absolute;
+  top: 84%;
+  right: 6%;
+  display: grid;
+  place-items: center;
+  width: 15cqw;
+  height: 15cqw;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--bg);
+  box-shadow: 0 3px 8px -3px color-mix(in srgb, var(--ink) 50%, transparent);
+  transition:
+    transform 0.15s var(--ease),
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.cap-fab svg {
+  width: 58%;
+  height: 58%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+[data-phase="press"] .cap-fab {
+  transform: scale(0.84);
+  background: var(--water);
+}
+
+[data-phase="select"] .cap-fab,
+[data-phase="snap"] .cap-fab {
+  opacity: 0;
+}
+
+.cap-note {
+  display: grid;
+  gap: 8px;
+}
+
+.cap-dest {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cap-field {
+  min-height: 132px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  font-size: clamp(14px, 1.3vw, 17px);
+  line-height: 1.5;
+}
+
+.cap-shot,
+.cap-text {
+  transition: opacity 0.4s ease;
+}
+
+[data-phase="idle"] :is(.cap-shot, .cap-text),
+[data-phase="press"] :is(.cap-shot, .cap-text),
+[data-phase="select"] :is(.cap-shot, .cap-text),
+[data-phase="snap"] :is(.cap-shot, .cap-text),
+[data-phase="clear"] :is(.cap-shot, .cap-text) {
+  opacity: 0;
+}
+
+.motion .cap-demo[data-phase="paste"] .cap-field {
+  animation: flash 0.9s var(--ease);
+}
+
+.cap-shot {
+  display: block;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--ink) 3%, var(--bg));
+  box-shadow: 0 8px 18px -12px color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+.cap-shot .cap-line {
+  font-size: 13px;
+}
+
+.cap-shot .cap-math {
+  margin-top: 4px;
+  font-size: 17px;
+}
+
+.cap-tex {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.82em;
+  color: var(--muted);
+}
+
+.cap-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.1em;
+  margin-left: 1px;
+  vertical-align: -0.2em;
+  background: var(--water);
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+.cap-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.cap-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cap-steps li {
+  transition: color 0.2s ease;
+}
+
+.cap-steps li + li::before {
+  content: "→";
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+.cap-steps li[data-on] {
+  color: var(--water);
+}
+
+.cap-modes {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--bg);
+}
+
+.cap-modes button {
+  padding: 6px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font: 500 13px/1.2 var(--sans);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.cap-modes button:hover {
+  color: var(--ink);
+}
+
+.cap-modes button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* product page */
+
+.top .cap-home {
+  color: var(--ink);
+}
+
+.cap-hero {
+  padding-top: clamp(56px, 10vh, 120px);
+  padding-bottom: clamp(64px, 9vw, 120px);
+}
+
+.cap-product {
+  grid-template-rows: auto auto auto auto 1fr;
+}
+
+.cap-product > .cap-demo {
+  grid-row: 1 / span 5;
+}
+
+.cap-product .mulbit-name {
+  font-size: clamp(52px, 6.6vw, 100px);
+}
+
+/* "CAPTURE philgood" is three times as long as 캡처 필굿; keep "CAPTURE" on one line */
+.cap-name:lang(en) {
+  font-size: clamp(44px, 5.4vw, 84px);
+}
+
+.cap-icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 28px;
+  border-radius: 22%;
+  box-shadow: 0 8px 20px -12px color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+.cap-get {
+  margin-top: 28px;
+}
+
+.cap-badge {
+  display: inline-block;
+}
+
+.cap-badge img {
+  display: block;
+  width: auto;
+  height: 64px;
+}
+
+.cap-get .meta {
+  margin-top: 6px;
+}
+
+.cap-define {
+  align-self: end;
+  max-width: 34em;
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 15.5px;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.cap-howto {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px clamp(28px, 4vw, 56px);
+}
+
+.cap-howto li {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.cap-num {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--water);
+}
+
+.cap-howto h3,
+.cap-list h3 {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.cap-howto p {
+  margin-top: 8px;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.cap-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 14em) minmax(0, 1fr);
+  gap: 6px 32px;
+  align-items: baseline;
+  padding-block: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.cap-list li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.cap-list p {
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.cap-plans-wrap {
+  max-width: 980px;
+}
+
+.cap-plans {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.cap-plans th,
+.cap-plans td {
+  padding: 16px 20px 16px 0;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.cap-plans tbody tr:last-child > * {
+  border-bottom: 1px solid var(--line);
+}
+
+.cap-plans thead th {
+  border-top: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cap-plans thead th span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cap-plans tbody th {
+  width: 24%;
+  font-weight: 500;
+}
+
+.cap-plans td {
+  width: 25.3%;
+  color: var(--muted);
+}
+
+.cap-note-line {
+  margin-top: 18px;
+  max-width: 62ch;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.cap-faq > div {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 8px clamp(28px, 4vw, 64px);
+  padding-block: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.cap-faq > div:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.cap-faq dt {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.cap-faq dd {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.cap-foot-site {
+  padding-top: clamp(48px, 7vw, 88px);
+}
+
+.cap-foot-site .fine {
+  margin-top: 0;
+}
+
+/* privacy policy: a reading page */
+
+.cap-policy {
+  max-width: calc(880px + var(--gutter) * 2);
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(56px, 8vw, 96px);
+}
+
+.cap-policy-head h1 {
+  margin-top: 4px;
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.cap-policy-head .cap-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+}
+
+.cap-policy-head .meta {
+  margin-top: 14px;
+}
+
+.cap-summary {
+  margin-top: 40px;
+}
+
+.cap-summary li {
+  padding-block: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.cap-summary li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.cap-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 28px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.cap-policy-sec {
+  padding-top: 52px;
+  scroll-margin-top: 16px;
+}
+
+.cap-policy-sec h2 {
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.cap-policy-sec p,
+.cap-policy-sec ul {
+  max-width: 68ch;
+  margin-top: 12px;
+}
+
+.cap-policy-sec p a,
+.cap-policy-sec li a {
+  color: var(--water);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.cap-bullets li {
+  position: relative;
+  margin-top: 8px;
+  padding-left: 20px;
+}
+
+.cap-bullets li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.cap-flows-wrap {
+  margin-top: 20px;
+}
+
+.cap-flows {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.cap-flows th {
+  padding: 0 16px 10px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.cap-flows td {
+  padding: 14px 16px 14px 0;
+  border-top: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.cap-flows td:first-child {
+  width: 34%;
+  font-weight: 500;
+}
+
+.cap-flows td:not(:first-child) {
+  color: var(--muted);
+}
+
+.cap-flows tr:last-child td {
+  border-bottom: 1px solid var(--line);
+}
+
+@media (max-width: 899px) {
+  .mulbit > .cap-demo {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 32px;
+  }
+
+  .cap-howto {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cap-list li,
+  .cap-faq > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* narrow: tables become stacked rows, each value labelled */
+@media (max-width: 700px) {
+  .cap-plans thead,
+  .cap-flows thead {
+    display: none;
+  }
+
+  .cap-plans,
+  .cap-plans tbody,
+  .cap-plans tr,
+  .cap-flows,
+  .cap-flows tbody,
+  .cap-flows tr {
+    display: block;
+  }
+
+  .cap-plans tr,
+  .cap-flows tr {
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .cap-plans tbody tr:last-child,
+  .cap-flows tr:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cap-plans td,
+  .cap-flows td,
+  .cap-plans tbody tr:last-child > td,
+  .cap-flows tr:last-child td {
+    display: grid;
+    grid-template-columns: 6.5em minmax(0, 1fr);
+    gap: 12px;
+    width: auto;
+    padding: 3px 0;
+    border: 0;
+  }
+
+  .cap-plans tbody th,
+  .cap-plans tbody tr:last-child > th {
+    display: block;
+    width: auto;
+    margin-bottom: 6px;
+    padding: 0;
+    border: 0;
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .cap-plans td::before,
+  .cap-flows td::before {
+    content: attr(data-label);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    line-height: 2;
+    color: var(--muted);
+  }
+
+  .cap-flows td:first-child,
+  .cap-flows tr:last-child td:first-child {
+    display: block;
+    width: auto;
+    margin-bottom: 6px;
+  }
+
+  .cap-flows td:first-child::before {
+    content: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .cap-demo {
+    min-height: 0;
+    padding-inline: 14px;
+  }
+
+  .cap-stage {
+    gap: 14px;
+  }
+
+  .cap-field {
+    min-height: 112px;
+    padding: 12px 13px;
+    font-size: 13.5px;
+  }
+
+  .cap-shot .cap-line {
+    font-size: 11.5px;
+  }
+
+  .cap-shot .cap-math {
+    font-size: 14px;
+  }
+
+  .cap-badge img {
+    height: 56px;
   }
 }

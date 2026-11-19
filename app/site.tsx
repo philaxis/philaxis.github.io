@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { COPY, type Lang, LINKS } from "./copy";
+import { CAPTURE_COPY } from "./capture/copy";
+import CaptureDemo from "./capture/demo";
+import { CAPTURE, CAPTURE_PATHS } from "./capture/facts";
+import { COPY, type Lang, LANG_KEY, LINKS } from "./copy";
 import FlickDemo from "./demo-flick";
 import LensDemo from "./demo-lens";
 import MulbitDemo from "./demo-mulbit";
@@ -10,8 +13,6 @@ import Dictation from "./dictation";
 import { useReveal } from "./motion";
 import { Typed } from "./text";
 import Traveller from "./traveller";
-
-const STORE = "lang";
 
 /** A section heading the travelling caret types out when it reaches the 40% line. */
 function Heading({ id, title, sub }: { id: string; title: string; sub: string }) {
@@ -33,7 +34,7 @@ export default function Site() {
 
   useEffect(() => {
     try {
-      if (localStorage.getItem(STORE) === "en") setLang("en");
+      if (localStorage.getItem(LANG_KEY) === "en") setLang("en");
     } catch {}
   }, []);
 
@@ -47,11 +48,12 @@ export default function Site() {
     setReplay(true);
     setLang(next);
     try {
-      localStorage.setItem(STORE, next);
+      localStorage.setItem(LANG_KEY, next);
     } catch {}
   };
 
   const s = t.sections;
+  const cap = CAPTURE_COPY[lang].home;
 
   return (
     <>
@@ -140,6 +142,41 @@ export default function Site() {
                 </div>
                 <p className="meta">{t.flick.meta}</p>
                 <p className="meta note">{t.flick.note}</p>
+              </div>
+            </article>
+          </section>
+
+          <section className="wrap sec" aria-labelledby="h-capture">
+            {/* a still heading: no typing, so no glowing dot (user rule 11-19); not a .verb, so the traveller skips it */}
+            <div className="head">
+              <h2 className="cap-verb" id="h-capture">
+                {cap.section.title}
+              </h2>
+              <p className="sub">{cap.section.sub}</p>
+            </div>
+            <article className="mulbit">
+              <h3 className="mulbit-name cap-name">
+                {CAPTURE.name[lang]}
+                <span className="alt">{CAPTURE.name[lang === "ko" ? "en" : "ko"]}</span>
+              </h3>
+              <p className="pitch">{cap.pitch}</p>
+              <CaptureDemo d={CAPTURE_COPY[lang].demo} />
+              <ul className="facts">
+                {cap.facts.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+              <div className="cta">
+                <div className="cta-row">
+                  <a className="btn" href={CAPTURE.play(lang)}>
+                    {cap.get}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                  <a className="mono-link" href={CAPTURE_PATHS.product[lang]}>
+                    {cap.more} →
+                  </a>
+                </div>
+                <p className="meta">{cap.meta}</p>
               </div>
             </article>
           </section>
