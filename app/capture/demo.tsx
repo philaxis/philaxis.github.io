@@ -108,17 +108,27 @@ export default function CaptureDemo({ d }: { d: CaptureCopy["demo"] }) {
           <span className="cap-dest">{d.dest}</span>
           <div className="cap-field">
             {mode === "image" ? (
-              <span className="cap-shot">
-                <span className="cap-line">{d.slide.line}</span>
-                <span className="cap-math">{d.slide.math}</span>
-              </span>
+              <>
+                <span className="cap-shot">
+                  <span className="cap-line">{d.slide.line}</span>
+                  <span className="cap-math">{d.slide.math}</span>
+                </span>
+                <span className="cap-caret" />
+              </>
             ) : (
+              // the caret sits right after the last character, never on a line of its own
               <span className="cap-text">
                 {first.slice(0, shown)}
-                {shown >= first.length && <span className="cap-tex">{lines[1]}</span>}
+                {shown >= first.length ? (
+                  <span className="cap-tex">
+                    {lines[1]}
+                    <span className="cap-caret" />
+                  </span>
+                ) : (
+                  <span className="cap-caret" />
+                )}
               </span>
             )}
-            <span className="cap-caret" />
           </div>
         </div>
       </div>

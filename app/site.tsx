@@ -147,7 +147,13 @@ export default function Site() {
           </section>
 
           <section className="wrap sec" aria-labelledby="h-capture">
-            <Heading id="h-capture" {...cap.section} />
+            {/* a still heading: no typing, so no glowing dot (user rule 11-19); not a .verb, so the traveller skips it */}
+            <div className="head">
+              <h2 className="cap-verb" id="h-capture">
+                {cap.section.title}
+              </h2>
+              <p className="sub">{cap.section.sub}</p>
+            </div>
             <article className="mulbit">
               <h3 className="mulbit-name cap-name">
                 {CAPTURE.name[lang]}
