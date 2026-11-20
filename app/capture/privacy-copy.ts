@@ -43,12 +43,14 @@ const ko = {
         {
           list: [
             `캡처한 그림: 클립보드에 넣으려고 앱 캐시에 잠깐 두는 파일, 그리고 '폴더 저장'을 켰을 때 정한 폴더(처음 값 ${folder})의 파일.`,
-            "워크플로우, 효과, 떠 있는 버튼, 언어 같은 설정.",
-            "'텍스트 인식 (개인 API)'에 넣은 내 Gemini API 키.",
+            "버튼, 효과, 떠 있는 버튼, 언어 같은 설정.",
+            "'글자를 클립보드에 (내 Gemini 키)'에 넣은 내 Gemini API 키.",
             "광고 시청 타이머, 구매 상태, 오늘의 글자 추출 횟수 같은 캐시.",
           ],
         },
         "이것들은 philaxis에게 오지 않아요. 앱을 지우면 앱 캐시와 설정도 함께 지워져요. 폴더에 저장한 그림은 갤러리에 남으니 필요 없으면 직접 지우면 돼요.",
+        "'화면에 붙여 두기'로 띄운 그림은 그 창을 닫으면 사라지고, 어디로도 보내지 않아요.",
+        "Samepaste가 깔려 있고 설정의 'Samepaste로도 보내기'가 켜져 있으면(처음 값은 켜짐), 클립보드에 넣은 그림과 글자를 같은 기기의 Samepaste 앱에 건네요. 그 뒤는 Samepaste의 개인정보 처리방침을 따라요. 설정에서 끄면 건네지 않아요.",
       ],
     },
     {
@@ -59,7 +61,7 @@ const ko = {
         {
           flows: [
             {
-              what: "앱 사용 통계: 화면 보기, 캡처 완료·효과 적용·프리셋 사용·워크플로우 만들기와 지우기, 무료/유료 구분과 워크플로우 개수, 앱 인스턴스 ID, 기기 모델·OS·언어, IP로 추정한 나라·도시",
+              what: "앱 사용 통계: 화면 보기, 캡처 완료·효과 적용·프리셋 사용·버튼 만들기와 지우기, 무료/유료 구분과 버튼 개수, 앱 인스턴스 ID, 기기 모델·OS·언어, IP로 추정한 나라·도시",
               when: "앱을 쓰는 동안",
               to: "Google LLC · Google 애널리틱스 for Firebase",
               why: "어떤 기능이 쓰이는지 보고 앱을 고치려고. 광고 ID는 통계로 모으지 않아요.",
@@ -72,13 +74,13 @@ const ko = {
             },
             {
               what: "고른 부분 그림(긴 변 1920px 이하로 줄인 JPEG)과 지시문(글자만 뽑기, 번역할 언어, LaTeX 여부)",
-              when: "'텍스트 인식'을 켠 워크플로우에서 캡처할 때만",
+              when: "글자를 복사하는 버튼('글자를 클립보드에')으로 캡처할 때만",
               to: "Google LLC · Firebase AI Logic을 거친 Gemini API",
               why: "그림 속 글자를 읽어 돌려받으려고. 돌아온 글자는 클립보드에만 넣고, 앱은 그림과 글자를 어디에도 남기지 않아요.",
             },
             {
               what: "고른 부분 그림과 지시문, 내가 넣은 API 키",
-              when: "'텍스트 인식 (개인 API)'을 켠 워크플로우에서 캡처할 때만",
+              when: "'글자를 클립보드에 (내 Gemini 키)'를 켠 버튼으로 캡처할 때만",
               to: "Google LLC · Gemini API(내 Google 계정)",
               why: "같은 이유. 이때는 내 계정과 Google 사이의 Gemini API 약관을 따라요.",
             },
@@ -147,7 +149,7 @@ const ko = {
             "문의 메일: 답한 뒤 더 필요 없으면 지워요.",
           ],
         },
-        "글자 추출로 보내고 싶지 않은 화면(신분증, 비밀번호 등)은 글자 추출을 끈 워크플로우로 캡처하세요.",
+        "글자 추출로 보내고 싶지 않은 화면(신분증, 비밀번호 등)은 그림 복사 버튼처럼 글자를 뽑지 않는 버튼으로 캡처하세요.",
       ],
     },
     {
@@ -228,12 +230,14 @@ const en: typeof ko = {
         {
           list: [
             `Captures: a file kept briefly in the app cache to put on the clipboard, and, with "Save to folder" on, files in the folder you chose (${folder} by default).`,
-            "Settings: workflows, effects, the floating button, language.",
-            'Your own Gemini API key, if you enter one for "Text recognition (Personal API)".',
+            "Settings: buttons, effects, the floating button, language.",
+            'Your own Gemini API key, if you enter one for "Text to clipboard (my Gemini key)".',
             "Caches such as the ad timer, purchase state and today's text extraction count.",
           ],
         },
         "None of this comes to philaxis. Uninstalling the app removes its cache and settings. Captures saved to a folder stay in your gallery until you delete them.",
+        'A picture put up with "Pin to screen" disappears when you close its window and is not sent anywhere.',
+        'With Samepaste installed and "Also send to Samepaste" on in Settings (on by default), the pictures and text put on the clipboard are handed to the Samepaste app on the same device. From there, Samepaste\'s privacy policy applies. Turn the setting off and nothing is handed over.',
       ],
     },
     {
@@ -244,7 +248,7 @@ const en: typeof ko = {
         {
           flows: [
             {
-              what: "Usage statistics: screen views, capture completed, effect applied, preset used, workflow created and deleted, free/paid status and workflow count, app instance ID, device model, OS, language, country and city estimated from IP",
+              what: "Usage statistics: screen views, capture completed, effect applied, preset used, button created and deleted, free/paid status and button count, app instance ID, device model, OS, language, country and city estimated from IP",
               when: "While you use the app",
               to: "Google LLC · Google Analytics for Firebase",
               why: "To see which features get used and improve the app. The advertising ID is not collected for statistics.",
@@ -257,13 +261,13 @@ const en: typeof ko = {
             },
             {
               what: "The selected part as an image (JPEG, longest side at most 1920 px) and the instruction (text only, target language, LaTeX or not)",
-              when: 'Only when you capture in a workflow with "Text recognition" on',
+              when: 'Only when you capture with a button that copies text ("Text to clipboard")',
               to: "Google LLC · Gemini API through Firebase AI Logic",
               why: "To read the text in the image. The text that comes back only goes on the clipboard; the app keeps neither the image nor the text anywhere.",
             },
             {
               what: "The selected part as an image, the instruction, and the API key you entered",
-              when: 'Only when you capture in a workflow with "Text recognition (Personal API)" on',
+              when: 'Only when you capture with a button that has "Text to clipboard (my Gemini key)" on',
               to: "Google LLC · Gemini API (your Google account)",
               why: "Same reason. Here the Gemini API terms between you and Google apply.",
             },
@@ -332,7 +336,7 @@ const en: typeof ko = {
             "Contact mail: deleted once it is no longer needed after replying.",
           ],
         },
-        "For screens you do not want sent for text extraction (ID cards, passwords), capture with a workflow that has text extraction off.",
+        "For screens you do not want sent for text extraction (ID cards, passwords), capture with a button that does not copy text, such as Copy image.",
       ],
     },
     {
