@@ -16,7 +16,7 @@ const ko = {
     pitch: "안드로이드 화면 일부를 잘라, 바로 붙여 넣거나 글자로 받습니다.",
     facts: [
       "떠 있는 버튼을 누르거나, S펜 버튼을 누른 채 화면을 두 번 톡 치면 고르기가 시작돼요.",
-      "첫 화면에 버튼이 셋 있어요. 그림 복사, 글자 복사, 번역해서 복사(PRO). 고른 부분이 그대로 클립보드에 들어가요.",
+      "첫 화면에 버튼이 셋 있어요. 그림 복사, 글자 복사, 번역해서 복사. 고른 부분이 그대로 클립보드에 들어가요.",
       "버튼을 누르면 '끝나면'에서 화면에 붙여 두기와 폴더 저장을 켜고, '고급 설정'에서 꾸미기와 파일 이름을 정해요.",
     ],
     get: "Google Play에서 받기",
@@ -41,12 +41,12 @@ const ko = {
   },
   page: {
     title: "캡처 필굿 — 화면 일부를 잘라 바로 붙여넣기·글자 추출 (안드로이드)",
-    description: `캡처 필굿(CAPTURE philgood)은 안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 앱입니다. 떠 있는 버튼이나 S펜으로 고르고, 첫 화면의 버튼으로 그림 그대로 또는 글자로 복사합니다. 번역과 LaTeX 수식은 PRO. 무료(광고), 글자 추출 하루 ${ocr.freePerDay}번.`,
+    description: `캡처 필굿(CAPTURE philgood)은 안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 앱입니다. 떠 있는 버튼이나 S펜으로 고르고, 첫 화면의 버튼으로 그림 그대로 또는 글자로 복사합니다. 무료는 글자 추출 하루 ${ocr.freePerDay}번(번역·LaTeX 수식 포함, 광고 있음), PRO는 하루 ${ocr.proDailyTopUp}번에 광고 없음.`,
     home: "필락시스",
     privacy: "처리방침",
     contact: "문의",
     alt: "CAPTURE philgood · Android",
-    define: `캡처 필굿은 안드로이드에서 화면의 일부를 잘라 곧바로 클립보드에 넣는 앱입니다. 첫 화면에 버튼이 셋 있습니다. 그림 복사는 고른 부분을 그림으로, 글자 복사는 Google Gemini가 읽은 글자로 클립보드에 넣고, 번역해서 복사(PRO)는 ${LANGS}개 언어 중 하나로 옮겨서 넣습니다. 갤러리를 열고, 자르고, 복사하는 단계를 건너뜁니다.`,
+    define: `캡처 필굿은 안드로이드에서 화면의 일부를 잘라 곧바로 클립보드에 넣는 앱입니다. 첫 화면에 버튼이 셋 있습니다. 그림 복사는 고른 부분을 그림으로, 글자 복사는 Google Gemini가 읽은 글자로 클립보드에 넣고, 번역해서 복사는 ${LANGS}개 언어 중 하나로 옮겨서 넣습니다. 갤러리를 열고, 자르고, 복사하는 단계를 건너뜁니다. 무료는 글자 추출을 하루 ${ocr.freePerDay}번 쓰고 번역과 LaTeX 수식도 이 안에 들어갑니다. PRO는 하루 ${ocr.proDailyTopUp}번까지 쓰고 광고가 없습니다.`,
     badge: "Google Play에서 다운로드",
     meta: `Android ${minAndroid} 이상 · 무료, 광고 있음 · 광고 제거와 PRO는 앱 안 결제`,
     steps: {
@@ -80,8 +80,8 @@ const ko = {
           line: "흑백, 그레이스케일, 색 반전, 회전, 뒤집기, 투명도, 채도, 대비를 정한 순서대로 입혀요. 강의 화면을 흑백으로 바꿔 붙이는 식이에요.",
         },
         { name: "글자 추출", line: `고른 부분의 글자를 Google Gemini가 읽어 클립보드에 넣어요. 무료는 하루 ${ocr.freePerDay}번.` },
-        { name: "번역 (PRO)", line: `읽은 글자를 ${LANGS}개 언어 중 하나로 옮겨서 넣어요. 버튼마다 언어를 따로 정해요.` },
-        { name: "수식 (PRO)", line: "수식을 LaTeX로 받아요. Obsidian, Logseq 같은 노트에 붙이면 수식으로 보여요." },
+        { name: "번역", line: `읽은 글자를 ${LANGS}개 언어 중 하나로 옮겨서 넣어요. 버튼마다 언어를 따로 정해요.` },
+        { name: "수식", line: "수식을 LaTeX로 받아요. Obsidian, Logseq 같은 노트에 붙이면 수식으로 보여요." },
         {
           name: "화면에 붙여 두기",
           line: "잘라 낸 그림을 다른 앱 위에 작은 창으로 띄워 둬요. 끌어서 옮기고 크기를 바꾸고, 두 번 톡 치면 닫혀요. 여러 장도 함께 띄워요.",
@@ -106,10 +106,9 @@ const ko = {
           cells: [`광고 한 편 보면 ${adMinutes}분 사용. 처음 한 번은 광고 없이`, "없음", "구독하는 동안 없음"],
         },
         {
-          name: "글자 추출",
+          name: "글자 추출 (번역·LaTeX 수식 포함)",
           cells: [`하루 ${ocr.freePerDay}번`, `하루 ${ocr.freePerDay}번`, `매일 ${ocr.proDailyTopUp}번 충전, ${ocr.proMax}번까지 쌓임`],
         },
-        { name: "번역·LaTeX 수식", cells: ["PRO에서만", "PRO에서만", "돼요"] },
       ],
       note: "가격은 나라마다 달라서 Google Play에 나와요. 구독은 Google Play에서 언제든 해지할 수 있어요.",
     },
@@ -119,7 +118,7 @@ const ko = {
       items: [
         {
           q: "캡처 필굿은 어떤 앱인가요?",
-          a: "안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 캡처 앱이에요. 첫 화면의 버튼으로 고른 부분을 그림으로 복사하거나, 글자로 복사하거나, 번역해서 복사해요(번역은 PRO). philaxis가 만들었어요.",
+          a: "안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 캡처 앱이에요. 첫 화면의 버튼으로 고른 부분을 그림으로 복사하거나, 글자로 복사하거나, 번역해서 복사해요. philaxis가 만들었어요.",
         },
         {
           q: "S펜이 없어도 되나요?",
@@ -127,15 +126,15 @@ const ko = {
         },
         {
           q: "글자 추출은 몇 번까지 무료인가요?",
-          a: `하루 ${ocr.freePerDay}번이에요. 날이 바뀌면 다시 ${ocr.freePerDay}번이에요. PRO를 구독하면 매일 ${ocr.proDailyTopUp}번이 충전되고 ${ocr.proMax}번까지 쌓여요. 내 Gemini API 키를 넣어 쓰는 출력(베타)도 있어요.`,
+          a: `하루 ${ocr.freePerDay}번이에요. 번역과 LaTeX 수식도 이 안에서 써요. 날이 바뀌면 다시 ${ocr.freePerDay}번이에요. PRO를 구독하면 매일 ${ocr.proDailyTopUp}번이 충전되고 ${ocr.proMax}번까지 쌓여요. 내 Gemini API 키를 넣어 쓰는 출력(베타)도 있어요.`,
         },
         {
           q: "수식도 글자로 뽑히나요?",
-          a: `네. 그냥 두면 √, ², Σ 같은 기호로 최대한 그대로 나와요. PRO에서 '수식은 LaTeX로'를 켜면 ${LATEX}처럼 LaTeX로 나와서, Obsidian·Logseq 같은 마크다운 노트에 붙이면 수식으로 보여요.`,
+          a: `네. 그냥 두면 √, ², Σ 같은 기호로 최대한 그대로 나와요. '수식은 LaTeX로'를 켜면 ${LATEX}처럼 LaTeX로 나와서, Obsidian·Logseq 같은 마크다운 노트에 붙이면 수식으로 보여요. 무료에서도 돼요.`,
         },
         {
           q: "어떤 언어로 번역되나요?",
-          a: `번역해서 복사(PRO)는 ${CAPTURE.translate.length}개 언어로 옮겨요: ${CAPTURE.translate.join(", ")}. 버튼마다 언어를 따로 정할 수 있어요.`,
+          a: `번역해서 복사는 ${CAPTURE.translate.length}개 언어로 옮겨요: ${CAPTURE.translate.join(", ")}. 버튼마다 언어를 따로 정할 수 있어요.`,
         },
         {
           q: "워크플로우는 어디 갔나요?",
@@ -159,7 +158,7 @@ const ko = {
         },
         {
           q: "광고는 어떻게 나오나요?",
-          a: `무료로 쓸 때는 광고 한 편을 보면 ${adMinutes}분 동안 캡처가 켜져요. 광고 제거를 한 번 사면 광고 없이 계속 쓰고, PRO를 구독하면 구독하는 동안 광고가 없고 글자 추출이 넉넉해지고 번역과 LaTeX 수식이 열려요.`,
+          a: `무료로 쓸 때는 광고 한 편을 보면 ${adMinutes}분 동안 캡처가 켜져요. 광고 제거를 한 번 사면 광고 없이 계속 써요. PRO를 구독하면 구독하는 동안 광고가 없고 글자 추출을 하루 ${ocr.proDailyTopUp}번까지 써요. 번역과 LaTeX 수식은 무료에서도 돼요.`,
         },
         { q: "아이폰이나 PC에서도 되나요?", a: `아니요. 안드로이드 ${minAndroid} 이상 폰과 태블릿용이에요.` },
         {
@@ -178,7 +177,7 @@ const en: typeof ko = {
     pitch: "Crop part of your Android screen and paste it right away, as a picture or as text.",
     facts: [
       "Tap the floating button, or hold the S Pen button and double-tap the screen, and selection starts.",
-      "The home screen has three buttons: Copy image, Copy text, and Translate and copy (PRO). Your selection goes straight to the clipboard.",
+      "The home screen has three buttons: Copy image, Copy text, and Translate and copy. Your selection goes straight to the clipboard.",
       "Open a button to turn on Pin to screen or saving to a folder; Advanced settings hold effects and file names.",
     ],
     get: "Get it on Google Play",
@@ -199,12 +198,12 @@ const en: typeof ko = {
   },
   page: {
     title: "CAPTURE philgood — crop part of the screen, paste it or extract the text (Android)",
-    description: `CAPTURE philgood is an Android app that crops part of the screen straight to the clipboard. Select with a floating button or the S Pen, then copy it as a picture or as text with the buttons on the home screen. Translation and LaTeX math are PRO. Free with ads, ${ocr.freePerDay} text extractions a day.`,
+    description: `CAPTURE philgood is an Android app that crops part of the screen straight to the clipboard. Select with a floating button or the S Pen, then copy it as a picture or as text with the buttons on the home screen. Free: ${ocr.freePerDay} text extractions a day, translation and LaTeX math included, with ads. PRO: ${ocr.proDailyTopUp} a day, no ads.`,
     home: "philaxis",
     privacy: "Privacy",
     contact: "Contact",
     alt: "캡처 필굿 · Android",
-    define: `CAPTURE philgood is an Android app that crops part of the screen and puts it straight on the clipboard. The home screen has three buttons: Copy image puts the selection on the clipboard as a picture, Copy text puts the text Google Gemini reads in it, and Translate and copy (PRO) puts it translated into one of ${LANGS} languages. It skips opening the gallery, cropping and copying.`,
+    define: `CAPTURE philgood is an Android app that crops part of the screen and puts it straight on the clipboard. The home screen has three buttons: Copy image puts the selection on the clipboard as a picture, Copy text puts the text Google Gemini reads in it, and Translate and copy puts it translated into one of ${LANGS} languages. It skips opening the gallery, cropping and copying. The free version gives ${ocr.freePerDay} text extractions a day, translation and LaTeX math included; PRO gives ${ocr.proDailyTopUp} a day with no ads.`,
     badge: "Get it on Google Play",
     meta: `Android ${minAndroid}+ · free with ads · ad removal and PRO are in-app purchases`,
     steps: {
@@ -238,8 +237,8 @@ const en: typeof ko = {
           line: "Black and white, grayscale, invert, rotate, flip, opacity, saturation and contrast, applied in the order you set. Say, turn a lecture slide black and white before it lands.",
         },
         { name: "Text extraction", line: `Google Gemini reads the text in your selection and puts it on the clipboard. ${ocr.freePerDay} a day for free.` },
-        { name: "Translation (PRO)", line: `Get the text translated into one of ${LANGS} languages. Each button keeps its own language.` },
-        { name: "Math (PRO)", line: "Get math as LaTeX, so it renders when pasted into notes like Obsidian or Logseq." },
+        { name: "Translation", line: `Get the text translated into one of ${LANGS} languages. Each button keeps its own language.` },
+        { name: "Math", line: "Get math as LaTeX, so it renders when pasted into notes like Obsidian or Logseq." },
         {
           name: "Pin to screen",
           line: "Keep the cropped picture floating over other apps in a small window. Drag it, resize it, double-tap to close. Pin several at once.",
@@ -264,14 +263,13 @@ const en: typeof ko = {
           cells: [`watch one ad for ${adMinutes} minutes of use; the first time is free`, "none", "none while subscribed"],
         },
         {
-          name: "Text extraction",
+          name: "Text extraction (translation and LaTeX math included)",
           cells: [
             `${ocr.freePerDay} a day`,
             `${ocr.freePerDay} a day`,
             `${ocr.proDailyTopUp} added daily, banks up to ${ocr.proMax}`,
           ],
         },
-        { name: "Translation, LaTeX math", cells: ["PRO only", "PRO only", "yes"] },
       ],
       note: "Prices differ by country, so Google Play shows them. You can cancel a subscription in Google Play any time.",
     },
@@ -281,7 +279,7 @@ const en: typeof ko = {
       items: [
         {
           q: "What is CAPTURE philgood?",
-          a: "A capture app for Android that crops part of the screen straight to the clipboard. The buttons on the home screen copy your selection as a picture, as text, or translated (translation is PRO). Made by philaxis.",
+          a: "A capture app for Android that crops part of the screen straight to the clipboard. The buttons on the home screen copy your selection as a picture, as text, or translated. Made by philaxis.",
         },
         {
           q: "Do I need an S Pen?",
@@ -289,15 +287,15 @@ const en: typeof ko = {
         },
         {
           q: "How many free text extractions do I get?",
-          a: `${ocr.freePerDay} a day, back to ${ocr.freePerDay} when the day changes. A PRO subscription adds ${ocr.proDailyTopUp} every day and banks up to ${ocr.proMax}. There is also an output (beta) that uses your own Gemini API key.`,
+          a: `${ocr.freePerDay} a day, translation and LaTeX math included, back to ${ocr.freePerDay} when the day changes. A PRO subscription adds ${ocr.proDailyTopUp} every day and banks up to ${ocr.proMax}. There is also an output (beta) that uses your own Gemini API key.`,
         },
         {
           q: "Does it extract math too?",
-          a: `Yes. Left as is, math keeps its symbols (√, ², Σ). With PRO, turn on "Formulas as LaTeX" and it comes out like ${LATEX}, which renders when pasted into Markdown notes such as Obsidian or Logseq.`,
+          a: `Yes. Left as is, math keeps its symbols (√, ², Σ). Turn on "Formulas as LaTeX" and it comes out like ${LATEX}, which renders when pasted into Markdown notes such as Obsidian or Logseq. This works on the free plan too.`,
         },
         {
           q: "Which languages can it translate into?",
-          a: `Translate and copy (PRO) works in ${CAPTURE.translate.length} languages: ${CAPTURE.translate.join(", ")}. Each button can have its own language.`,
+          a: `Translate and copy works in ${CAPTURE.translate.length} languages: ${CAPTURE.translate.join(", ")}. Each button can have its own language.`,
         },
         {
           q: "Where did workflows go?",
@@ -321,7 +319,7 @@ const en: typeof ko = {
         },
         {
           q: "How do the ads work?",
-          a: `On the free plan, watching one ad turns capture on for ${adMinutes} minutes. Buy ad removal once to use it without ads for good; subscribe to PRO for no ads while subscribed, plenty of text extractions, and translation and LaTeX math.`,
+          a: `On the free plan, watching one ad turns capture on for ${adMinutes} minutes. Buy ad removal once to use it without ads for good. Subscribe to PRO for no ads while subscribed and up to ${ocr.proDailyTopUp} text extractions a day. Translation and LaTeX math work on the free plan too.`,
         },
         { q: "Does it work on iPhone or PC?", a: `No. It is for Android ${minAndroid}+ phones and tablets.` },
         {

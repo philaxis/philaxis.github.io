@@ -19,13 +19,13 @@ export function GET() {
 ${en.define}
 
 - Platform: Android ${CAPTURE.minAndroid}+ (package ${CAPTURE.pkg}). Not available for iPhone or PC.
-- Buttons (from version 1.0.5): the home screen starts with three buttons, Copy image, Copy text, and Translate and copy (PRO). Users can make more buttons; effects, save folder and file names live under Advanced settings. Older "workflows" became buttons with the same settings.
+- Buttons (from version 1.0.5): the home screen starts with three buttons, Copy image, Copy text, and Translate and copy. Users can make more buttons; effects, save folder and file names live under Advanced settings. Older "workflows" became buttons with the same settings.
 - Trigger: a floating button (shape: circle, pill, or half-circle on the screen edge), or holding the S Pen button and double-tapping the screen; a home screen widget turns chosen buttons on and off.
 - Selection: rectangle, freehand or full screen.
-- What a button does, together on one capture: copy the image to the clipboard, copy its text read by Google Gemini (translation into ${CAPTURE.translate.length} languages and LaTeX math are PRO), save to a folder, pin to screen (a small window floating over other apps), share.
+- What a button does, together on one capture: copy the image to the clipboard, copy its text read by Google Gemini (optionally translated into one of ${CAPTURE.translate.length} languages, with math as LaTeX), save to a folder, pin to screen (a small window floating over other apps), share.
 - Effects: black and white, grayscale, invert, rotate, flip, opacity, saturation, contrast.
 - Samepaste handoff: with Samepaste installed and "Also send to Samepaste" on (default), what goes to the clipboard is also handed to Samepaste on the same device.
-- Price: free with ads (one rewarded ad unlocks ${CAPTURE.adMinutes} minutes). One-time ad removal. PRO subscription (monthly or yearly): no ads while subscribed, translation and LaTeX math, ${ocr.proDailyTopUp} text extractions added daily up to ${ocr.proMax}. Free and ad-removal users get ${ocr.freePerDay} text extractions a day.
+- Price: free with ads (one rewarded ad unlocks ${CAPTURE.adMinutes} minutes) and ${ocr.freePerDay} text extractions a day, translation and LaTeX math included. One-time ad removal: no ads, same ${ocr.freePerDay} a day. PRO subscription (monthly or yearly): no ads while subscribed and ${ocr.proDailyTopUp} text extractions added daily, banking up to ${ocr.proMax}. No feature is PRO-only.
 - Privacy: captures stay on the device; only with a button that copies text is the selected part sent to Google Gemini. Usage statistics go to Google Analytics for Firebase; ads use Google AdMob.
 - Support: ${CAPTURE.mail}
 
