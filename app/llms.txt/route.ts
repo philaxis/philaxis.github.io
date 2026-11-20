@@ -19,12 +19,14 @@ export function GET() {
 ${en.define}
 
 - Platform: Android ${CAPTURE.minAndroid}+ (package ${CAPTURE.pkg}). Not available for iPhone or PC.
-- Trigger: a floating button, or holding the S Pen button and double-tapping the screen; a home screen widget turns workflows on and off.
+- Buttons (from version 1.0.5): the home screen starts with three buttons, Copy image, Copy text, and Translate and copy (PRO). Users can make more buttons; effects, save folder and file names live under Advanced settings. Older "workflows" became buttons with the same settings.
+- Trigger: a floating button (shape: circle, pill, or half-circle on the screen edge), or holding the S Pen button and double-tapping the screen; a home screen widget turns chosen buttons on and off.
 - Selection: rectangle, freehand or full screen.
-- Outputs, run together on one capture: copy image to clipboard, save to a folder, text extraction with Google Gemini (optional LaTeX for math, optional translation into ${CAPTURE.translate.length} languages), share.
+- What a button does, together on one capture: copy the image to the clipboard, copy its text read by Google Gemini (translation into ${CAPTURE.translate.length} languages and LaTeX math are PRO), save to a folder, pin to screen (a small window floating over other apps), share.
 - Effects: black and white, grayscale, invert, rotate, flip, opacity, saturation, contrast.
-- Price: free with ads (one rewarded ad unlocks ${CAPTURE.adMinutes} minutes). One-time ad removal. PRO subscription (monthly or yearly): no ads while subscribed, ${ocr.proDailyTopUp} text extractions added daily up to ${ocr.proMax}. Free and ad-removal users get ${ocr.freePerDay} text extractions a day.
-- Privacy: captures stay on the device; only with text extraction on is the selected part sent to Google Gemini. Usage statistics go to Google Analytics for Firebase; ads use Google AdMob.
+- Samepaste handoff: with Samepaste installed and "Also send to Samepaste" on (default), what goes to the clipboard is also handed to Samepaste on the same device.
+- Price: free with ads (one rewarded ad unlocks ${CAPTURE.adMinutes} minutes). One-time ad removal. PRO subscription (monthly or yearly): no ads while subscribed, translation and LaTeX math, ${ocr.proDailyTopUp} text extractions added daily up to ${ocr.proMax}. Free and ad-removal users get ${ocr.freePerDay} text extractions a day.
+- Privacy: captures stay on the device; only with a button that copies text is the selected part sent to Google Gemini. Usage statistics go to Google Analytics for Firebase; ads use Google AdMob.
 - Support: ${CAPTURE.mail}
 
 - [CAPTURE philgood (English)](${SITE}${CAPTURE_PATHS.product.en}): what it does, plans, FAQ

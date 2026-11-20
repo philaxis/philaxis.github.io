@@ -16,8 +16,8 @@ const ko = {
     pitch: "안드로이드 화면 일부를 잘라, 바로 붙여 넣거나 글자로 받습니다.",
     facts: [
       "떠 있는 버튼을 누르거나, S펜 버튼을 누른 채 화면을 두 번 톡 치면 고르기가 시작돼요.",
-      `고른 부분은 그림 그대로, 아니면 글자로 클립보드에 들어가요. 수식은 LaTeX로, ${LANGS}개 언어 번역도 돼요.`,
-      "효과, 저장 폴더, 출력을 묶어 수업용·업무용 워크플로우로 따로 둬요.",
+      "첫 화면에 버튼이 셋 있어요. 그림 복사, 글자 복사, 번역해서 복사(PRO). 고른 부분이 그대로 클립보드에 들어가요.",
+      "버튼을 누르면 '끝나면'에서 화면에 붙여 두기와 폴더 저장을 켜고, '고급 설정'에서 꾸미기와 파일 이름을 정해요.",
     ],
     get: "Google Play에서 받기",
     more: "자세히 보기",
@@ -41,12 +41,12 @@ const ko = {
   },
   page: {
     title: "캡처 필굿 — 화면 일부를 잘라 바로 붙여넣기·글자 추출 (안드로이드)",
-    description: `캡처 필굿(CAPTURE philgood)은 안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 앱입니다. 떠 있는 버튼이나 S펜으로 고르고, 그림 그대로 또는 글자·LaTeX 수식으로 받고, ${LANGS}개 언어로 번역합니다. 무료(광고), 글자 추출 하루 ${ocr.freePerDay}번.`,
+    description: `캡처 필굿(CAPTURE philgood)은 안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 앱입니다. 떠 있는 버튼이나 S펜으로 고르고, 첫 화면의 버튼으로 그림 그대로 또는 글자로 복사합니다. 번역과 LaTeX 수식은 PRO. 무료(광고), 글자 추출 하루 ${ocr.freePerDay}번.`,
     home: "필락시스",
     privacy: "처리방침",
     contact: "문의",
     alt: "CAPTURE philgood · Android",
-    define: `캡처 필굿은 안드로이드에서 화면의 일부를 잘라 곧바로 클립보드에 넣는 앱입니다. 고른 부분을 그림으로 붙여 넣거나, Google Gemini로 글자와 수식(LaTeX)을 뽑아 붙여 넣거나, ${LANGS}개 언어 중 하나로 번역해 받을 수 있습니다. 갤러리를 열고, 자르고, 복사하는 단계를 건너뜁니다.`,
+    define: `캡처 필굿은 안드로이드에서 화면의 일부를 잘라 곧바로 클립보드에 넣는 앱입니다. 첫 화면에 버튼이 셋 있습니다. 그림 복사는 고른 부분을 그림으로, 글자 복사는 Google Gemini가 읽은 글자로 클립보드에 넣고, 번역해서 복사(PRO)는 ${LANGS}개 언어 중 하나로 옮겨서 넣습니다. 갤러리를 열고, 자르고, 복사하는 단계를 건너뜁니다.`,
     badge: "Google Play에서 다운로드",
     meta: `Android ${minAndroid} 이상 · 무료, 광고 있음 · 광고 제거와 PRO는 앱 안 결제`,
     steps: {
@@ -63,7 +63,7 @@ const ko = {
         },
         {
           name: "받기",
-          line: "손을 떼는 순간 정해 둔 출력이 한꺼번에 돌아요. 클립보드, 폴더 저장, 글자 추출, 공유. 남은 일은 붙여 넣기뿐이에요.",
+          line: "손을 떼는 순간 그 버튼이 정해 둔 일을 해요. 그림이나 글자를 클립보드에 넣고, 켜 두었다면 폴더 저장, 화면에 붙여 두기, 공유도 함께 해요.",
         },
       ],
     },
@@ -71,17 +71,27 @@ const ko = {
       title: "할 수 있는 것",
       sub: "what it does",
       items: [
-        { name: "워크플로우", line: "부르는 법, 효과, 저장 폴더, 출력을 묶어 여러 벌 둬요. 수업용, 업무용처럼." },
         {
-          name: "효과",
+          name: "내 버튼",
+          line: "처음엔 그림 복사, 글자 복사, 번역해서 복사가 있어요. 버튼을 더 만들 수 있고, '고급 설정'에서 꾸미기, 저장 폴더, 파일 이름을 고쳐요.",
+        },
+        {
+          name: "꾸미기",
           line: "흑백, 그레이스케일, 색 반전, 회전, 뒤집기, 투명도, 채도, 대비를 정한 순서대로 입혀요. 강의 화면을 흑백으로 바꿔 붙이는 식이에요.",
         },
         { name: "글자 추출", line: `고른 부분의 글자를 Google Gemini가 읽어 클립보드에 넣어요. 무료는 하루 ${ocr.freePerDay}번.` },
-        { name: "수식", line: "수식은 LaTeX로 감싸서 받을 수 있어요. Obsidian, Logseq 같은 노트에 붙이면 수식으로 보여요." },
-        { name: "번역", line: `읽은 글자를 ${LANGS}개 언어 중 하나로 옮겨서 받아요.` },
-        { name: "여러 출력", line: "한 번 잘라서 클립보드 복사, 폴더 저장, 글자 추출, 공유를 함께 해요." },
-        { name: "떠 있는 버튼", line: "크기, 색, 투명도를 바꾸고, 끌어서 옮기거나 휴지통에 놓아 숨겨요." },
-        { name: "위젯", line: "홈 화면 위젯으로 워크플로우를 켜고 꺼요." },
+        { name: "번역 (PRO)", line: `읽은 글자를 ${LANGS}개 언어 중 하나로 옮겨서 넣어요. 버튼마다 언어를 따로 정해요.` },
+        { name: "수식 (PRO)", line: "수식을 LaTeX로 받아요. Obsidian, Logseq 같은 노트에 붙이면 수식으로 보여요." },
+        {
+          name: "화면에 붙여 두기",
+          line: "잘라 낸 그림을 다른 앱 위에 작은 창으로 띄워 둬요. 끌어서 옮기고 크기를 바꾸고, 두 번 톡 치면 닫혀요. 여러 장도 함께 띄워요.",
+        },
+        { name: "떠 있는 버튼", line: "모양을 동그라미, 알약, 화면 가장자리 반원 중에서 골라요. 색, 크기, 투명도도 바꿔요." },
+        {
+          name: "Samepaste로도 보내기",
+          line: "Samepaste가 깔려 있으면 클립보드에 넣은 그림과 글자가 Samepaste 기록과 다른 기기에도 가요. 설정에서 끌 수 있어요.",
+        },
+        { name: "위젯", line: "홈 화면 위젯으로 고른 버튼 여러 개를 한 번에 켜고 꺼요." },
       ],
     },
     plans: {
@@ -90,15 +100,16 @@ const ko = {
       head: ["", "무료", "광고 제거", "PRO"],
       kind: ["", "", "한 번 구매", "월·연 구독"],
       rows: [
-        { name: "캡처·효과·저장·공유", cells: ["모두", "모두", "모두"] },
+        { name: "그림 복사·저장·꾸미기·붙여 두기", cells: ["모두", "모두", "모두"] },
         {
           name: "광고",
           cells: [`광고 한 편 보면 ${adMinutes}분 사용. 처음 한 번은 광고 없이`, "없음", "구독하는 동안 없음"],
         },
         {
-          name: "글자 추출·번역·수식",
+          name: "글자 추출",
           cells: [`하루 ${ocr.freePerDay}번`, `하루 ${ocr.freePerDay}번`, `매일 ${ocr.proDailyTopUp}번 충전, ${ocr.proMax}번까지 쌓임`],
         },
+        { name: "번역·LaTeX 수식", cells: ["PRO에서만", "PRO에서만", "돼요"] },
       ],
       note: "가격은 나라마다 달라서 Google Play에 나와요. 구독은 Google Play에서 언제든 해지할 수 있어요.",
     },
@@ -108,7 +119,7 @@ const ko = {
       items: [
         {
           q: "캡처 필굿은 어떤 앱인가요?",
-          a: "안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 캡처 앱이에요. 고른 부분을 그림으로 붙이거나, 글자·수식으로 뽑거나, 번역해서 받을 수 있어요. philaxis가 만들었어요.",
+          a: "안드로이드 화면 일부를 잘라 클립보드에 바로 넣는 캡처 앱이에요. 첫 화면의 버튼으로 고른 부분을 그림으로 복사하거나, 글자로 복사하거나, 번역해서 복사해요(번역은 PRO). philaxis가 만들었어요.",
         },
         {
           q: "S펜이 없어도 되나요?",
@@ -120,12 +131,23 @@ const ko = {
         },
         {
           q: "수식도 글자로 뽑히나요?",
-          a: `네. 그냥 두면 √, ², Σ 같은 기호로 최대한 그대로 나와요. '수식을 $, $$으로 감싸기 (LaTeX)'를 켜면 ${LATEX}처럼 LaTeX로 나와서, Obsidian·Logseq 같은 마크다운 노트에 붙이면 수식으로 보여요.`,
+          a: `네. 그냥 두면 √, ², Σ 같은 기호로 최대한 그대로 나와요. PRO에서 '수식은 LaTeX로'를 켜면 ${LATEX}처럼 LaTeX로 나와서, Obsidian·Logseq 같은 마크다운 노트에 붙이면 수식으로 보여요.`,
         },
-        { q: "어떤 언어로 번역되나요?", a: `${CAPTURE.translate.length}개 언어예요: ${CAPTURE.translate.join(", ")}.` },
+        {
+          q: "어떤 언어로 번역되나요?",
+          a: `번역해서 복사(PRO)는 ${CAPTURE.translate.length}개 언어로 옮겨요: ${CAPTURE.translate.join(", ")}. 버튼마다 언어를 따로 정할 수 있어요.`,
+        },
+        {
+          q: "워크플로우는 어디 갔나요?",
+          a: "1.0.5부터 '버튼'이라고 불러요. 전에 만든 워크플로우는 같은 순서와 설정 그대로 첫 화면의 버튼이 돼요. 효과·출력·폴더 같은 자세한 설정은 버튼을 누르고 '고급 설정'에 있어요.",
+        },
+        {
+          q: "화면에 붙여 두기는 뭔가요?",
+          a: "잘라 낸 그림을 다른 앱 위에 작은 창으로 띄워 두는 거예요. 문제를 보면서 풀이를 쓰거나, 지도를 보면서 메시지를 쓸 때 좋아요. 버튼의 '끝나면'에서 켜고, 창은 두 번 톡 치면 닫혀요.",
+        },
         {
           q: "캡처한 그림은 어디로 가나요?",
-          a: `기기 안에만 있어요. 클립보드와 정해 둔 폴더(처음 값은 ${folder})에 들어가요. 글자 추출을 켠 워크플로우일 때만 고른 부분이 Google Gemini로 가서 글자로 바뀌어 돌아와요. 자세한 건 개인정보 처리방침에 있어요.`,
+          a: `기기 안에만 있어요. 클립보드와 정해 둔 폴더(처음 값은 ${folder})에 들어가요. 글자를 복사하는 버튼일 때만 고른 부분이 Google Gemini로 가서 글자로 바뀌어 돌아와요. 'Samepaste로도 보내기'를 켜 두면 클립보드에 넣은 것이 Samepaste로도 가요. 자세한 건 개인정보 처리방침에 있어요.`,
         },
         {
           q: "화면을 계속 녹화하나요?",
@@ -137,7 +159,7 @@ const ko = {
         },
         {
           q: "광고는 어떻게 나오나요?",
-          a: `무료로 쓸 때는 광고 한 편을 보면 ${adMinutes}분 동안 캡처 서비스가 켜져요. 광고 제거를 한 번 사면 광고 없이 계속 쓰고, PRO를 구독하면 구독하는 동안 광고가 없고 글자 추출이 넉넉해져요.`,
+          a: `무료로 쓸 때는 광고 한 편을 보면 ${adMinutes}분 동안 캡처가 켜져요. 광고 제거를 한 번 사면 광고 없이 계속 쓰고, PRO를 구독하면 구독하는 동안 광고가 없고 글자 추출이 넉넉해지고 번역과 LaTeX 수식이 열려요.`,
         },
         { q: "아이폰이나 PC에서도 되나요?", a: `아니요. 안드로이드 ${minAndroid} 이상 폰과 태블릿용이에요.` },
         {
@@ -156,8 +178,8 @@ const en: typeof ko = {
     pitch: "Crop part of your Android screen and paste it right away, as a picture or as text.",
     facts: [
       "Tap the floating button, or hold the S Pen button and double-tap the screen, and selection starts.",
-      `What you select lands on the clipboard as a picture, or as text. Math comes out as LaTeX, and it can translate into ${LANGS} languages.`,
-      "Bundle effects, a save folder and outputs into workflows, one for class, one for work.",
+      "The home screen has three buttons: Copy image, Copy text, and Translate and copy (PRO). Your selection goes straight to the clipboard.",
+      "Open a button to turn on Pin to screen or saving to a folder; Advanced settings hold effects and file names.",
     ],
     get: "Get it on Google Play",
     more: "Details",
@@ -177,12 +199,12 @@ const en: typeof ko = {
   },
   page: {
     title: "CAPTURE philgood — crop part of the screen, paste it or extract the text (Android)",
-    description: `CAPTURE philgood is an Android app that crops part of the screen straight to the clipboard. Select with a floating button or the S Pen, then paste it as a picture, as text with LaTeX math, or translated into one of ${LANGS} languages. Free with ads, ${ocr.freePerDay} text extractions a day.`,
+    description: `CAPTURE philgood is an Android app that crops part of the screen straight to the clipboard. Select with a floating button or the S Pen, then copy it as a picture or as text with the buttons on the home screen. Translation and LaTeX math are PRO. Free with ads, ${ocr.freePerDay} text extractions a day.`,
     home: "philaxis",
     privacy: "Privacy",
     contact: "Contact",
     alt: "캡처 필굿 · Android",
-    define: `CAPTURE philgood is an Android app that crops part of the screen and puts it straight on the clipboard. You can paste the selection as a picture, extract its text and math (LaTeX) with Google Gemini, or get it translated into one of ${LANGS} languages. It skips opening the gallery, cropping and copying.`,
+    define: `CAPTURE philgood is an Android app that crops part of the screen and puts it straight on the clipboard. The home screen has three buttons: Copy image puts the selection on the clipboard as a picture, Copy text puts the text Google Gemini reads in it, and Translate and copy (PRO) puts it translated into one of ${LANGS} languages. It skips opening the gallery, cropping and copying.`,
     badge: "Get it on Google Play",
     meta: `Android ${minAndroid}+ · free with ads · ad removal and PRO are in-app purchases`,
     steps: {
@@ -199,7 +221,7 @@ const en: typeof ko = {
         },
         {
           name: "Paste",
-          line: "The moment you let go, every output you set runs at once: clipboard, save to folder, text extraction, share. All that's left is pasting.",
+          line: "The moment you let go, the button does its job: the picture or text goes to the clipboard, and if you turned them on, it also saves to a folder, pins to the screen or shares.",
         },
       ],
     },
@@ -207,17 +229,27 @@ const en: typeof ko = {
       title: "What it does",
       sub: "what it does",
       items: [
-        { name: "Workflows", line: "Bundle how you call it, effects, a save folder and outputs. Keep several, say one for class and one for work." },
+        {
+          name: "Your buttons",
+          line: "You start with Copy image, Copy text and Translate and copy. Make more buttons, and change effects, the save folder and file names under Advanced settings.",
+        },
         {
           name: "Effects",
           line: "Black and white, grayscale, invert, rotate, flip, opacity, saturation and contrast, applied in the order you set. Say, turn a lecture slide black and white before it lands.",
         },
         { name: "Text extraction", line: `Google Gemini reads the text in your selection and puts it on the clipboard. ${ocr.freePerDay} a day for free.` },
-        { name: "Math", line: "Math can come wrapped in LaTeX, so it renders when pasted into notes like Obsidian or Logseq." },
-        { name: "Translation", line: `Get the extracted text translated into one of ${LANGS} languages.` },
-        { name: "Many outputs", line: "One crop can copy to the clipboard, save to a folder, extract text and share, all together." },
-        { name: "Floating button", line: "Change its size, color and opacity; drag it around, or drop it on the bin to hide it." },
-        { name: "Widget", line: "Turn workflows on and off from a home screen widget." },
+        { name: "Translation (PRO)", line: `Get the text translated into one of ${LANGS} languages. Each button keeps its own language.` },
+        { name: "Math (PRO)", line: "Get math as LaTeX, so it renders when pasted into notes like Obsidian or Logseq." },
+        {
+          name: "Pin to screen",
+          line: "Keep the cropped picture floating over other apps in a small window. Drag it, resize it, double-tap to close. Pin several at once.",
+        },
+        { name: "Floating button", line: "Pick its shape: circle, pill, or a half-circle on the screen edge. Change its color, size and opacity too." },
+        {
+          name: "Also send to Samepaste",
+          line: "With Samepaste installed, the pictures and text you put on the clipboard also reach Samepaste's history and your other devices. You can turn it off in Settings.",
+        },
+        { name: "Widget", line: "Turn several chosen buttons on and off at once from a home screen widget." },
       ],
     },
     plans: {
@@ -226,19 +258,20 @@ const en: typeof ko = {
       head: ["", "Free", "No ads", "PRO"],
       kind: ["", "", "one-time purchase", "monthly or yearly"],
       rows: [
-        { name: "Capture, effects, save, share", cells: ["all", "all", "all"] },
+        { name: "Copy image, save, effects, pin", cells: ["all", "all", "all"] },
         {
           name: "Ads",
           cells: [`watch one ad for ${adMinutes} minutes of use; the first time is free`, "none", "none while subscribed"],
         },
         {
-          name: "Text extraction, translation, math",
+          name: "Text extraction",
           cells: [
             `${ocr.freePerDay} a day`,
             `${ocr.freePerDay} a day`,
             `${ocr.proDailyTopUp} added daily, banks up to ${ocr.proMax}`,
           ],
         },
+        { name: "Translation, LaTeX math", cells: ["PRO only", "PRO only", "yes"] },
       ],
       note: "Prices differ by country, so Google Play shows them. You can cancel a subscription in Google Play any time.",
     },
@@ -248,7 +281,7 @@ const en: typeof ko = {
       items: [
         {
           q: "What is CAPTURE philgood?",
-          a: "A capture app for Android that crops part of the screen straight to the clipboard. You can paste the selection as a picture, extract its text and math, or get it translated. Made by philaxis.",
+          a: "A capture app for Android that crops part of the screen straight to the clipboard. The buttons on the home screen copy your selection as a picture, as text, or translated (translation is PRO). Made by philaxis.",
         },
         {
           q: "Do I need an S Pen?",
@@ -260,12 +293,23 @@ const en: typeof ko = {
         },
         {
           q: "Does it extract math too?",
-          a: `Yes. Left as is, math keeps its symbols (√, ², Σ). Turn on the LaTeX option and it comes out like ${LATEX}, which renders when pasted into Markdown notes such as Obsidian or Logseq.`,
+          a: `Yes. Left as is, math keeps its symbols (√, ², Σ). With PRO, turn on "Formulas as LaTeX" and it comes out like ${LATEX}, which renders when pasted into Markdown notes such as Obsidian or Logseq.`,
         },
-        { q: "Which languages can it translate into?", a: `${CAPTURE.translate.length} languages: ${CAPTURE.translate.join(", ")}.` },
+        {
+          q: "Which languages can it translate into?",
+          a: `Translate and copy (PRO) works in ${CAPTURE.translate.length} languages: ${CAPTURE.translate.join(", ")}. Each button can have its own language.`,
+        },
+        {
+          q: "Where did workflows go?",
+          a: "From 1.0.5 they are called buttons. Every workflow you made becomes a button on the home screen, in the same order with the same settings. Effects, outputs and folders are under Advanced settings when you open a button.",
+        },
+        {
+          q: "What is Pin to screen?",
+          a: "It keeps the cropped picture floating over other apps in a small window, handy for writing a solution while looking at the problem, or texting directions while looking at a map. Turn it on in a button's options; double-tap the window to close it.",
+        },
         {
           q: "Where do my captures go?",
-          a: `They stay on your device: on the clipboard and in the folder you set (${folder} by default). Only in a workflow with text extraction on does the selection go to Google Gemini, which sends the text back. The privacy policy has the details.`,
+          a: `They stay on your device: on the clipboard and in the folder you set (${folder} by default). Only with a button that copies text does the selection go to Google Gemini, which sends the text back. With "Also send to Samepaste" on, what goes to the clipboard also goes to Samepaste. The privacy policy has the details.`,
         },
         {
           q: "Does it record my screen all the time?",
@@ -277,7 +321,7 @@ const en: typeof ko = {
         },
         {
           q: "How do the ads work?",
-          a: `On the free plan, watching one ad turns the capture service on for ${adMinutes} minutes. Buy ad removal once to use it without ads for good; subscribe to PRO for no ads while subscribed and plenty of text extractions.`,
+          a: `On the free plan, watching one ad turns capture on for ${adMinutes} minutes. Buy ad removal once to use it without ads for good; subscribe to PRO for no ads while subscribed, plenty of text extractions, and translation and LaTeX math.`,
         },
         { q: "Does it work on iPhone or PC?", a: `No. It is for Android ${minAndroid}+ phones and tablets.` },
         {
