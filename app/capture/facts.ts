@@ -1,6 +1,7 @@
 // Everything about CAPTURE philgood that changes when the app changes, in one place.
 // Checked against philaxis/spen-capture main on 2026-11-20. The icon lives at
-// public/capture/icon.png; swap that file when spen-capture#4 lands.
+// public/capture/icon.png (the Play Store 512px icon from spen-capture#4); when it
+// changes, re-shoot og-<lang>.png with scripts/capture-og.html.
 
 import type { Lang } from "../copy";
 
