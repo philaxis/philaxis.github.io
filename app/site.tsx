@@ -12,9 +12,8 @@ import RelDemo from "./demo-rel";
 import Dictation from "./dictation";
 import { useReveal } from "./motion";
 import { Typed } from "./text";
-import Traveller from "./traveller";
 
-/** A section heading the travelling caret types out when it reaches the 40% line. */
+/** A section heading, typed out when it reaches the 40% line. */
 function Heading({ id, title, sub }: { id: string; title: string; sub: string }) {
   return (
     <div className="head">
@@ -79,8 +78,6 @@ export default function Site() {
         </section>
 
         <div className="groups">
-          <Traveller />
-
           <section className="wrap sec" aria-labelledby="h-voice">
             <Heading id="h-voice" {...s.voice} />
             <article className="mulbit">
@@ -147,13 +144,7 @@ export default function Site() {
           </section>
 
           <section className="wrap sec" aria-labelledby="h-capture">
-            {/* a still heading: no typing, so no glowing dot (user rule 11-19); not a .verb, so the traveller skips it */}
-            <div className="head">
-              <h2 className="cap-verb" id="h-capture">
-                {cap.section.title}
-              </h2>
-              <p className="sub">{cap.section.sub}</p>
-            </div>
+            <Heading id="h-capture" {...cap.section} />
             <article className="mulbit">
               <h3 className="mulbit-name cap-name">
                 {CAPTURE.name[lang]}
@@ -233,7 +224,7 @@ export default function Site() {
 
       <footer className="wrap foot-site">
         <a className="mail" href={LINKS.mail} data-reveal="">
-          <Typed text={LINKS.email} step={42} stay />
+          <Typed text={LINKS.email} step={42} />
         </a>
         <ul className="fine">
           <li>

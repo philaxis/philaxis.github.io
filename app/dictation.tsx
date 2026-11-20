@@ -76,7 +76,7 @@ function useMicWave(
 
 type Mode = "static" | "run" | "done";
 
-/** The hero headline, dictated phrase by phrase with the glowing caret, over a live waveform. */
+/** The hero headline, dictated phrase by phrase with a bar caret, over a live waveform. */
 export default function Dictation({
   lines,
   replay,

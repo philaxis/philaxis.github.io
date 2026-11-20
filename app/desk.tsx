@@ -438,15 +438,6 @@ export default function Desk({ c, words: text }: { c: Labels; words: string }) {
     <div className="desk" data-reveal="" style={{ "--lift": `${f(LIFT)}px`, "--roll-x": `${f(ROLL[0])}px`, "--roll-y": `${f(ROLL[1])}px` } as CSSProperties}>
       <div className="desk-stage" ref={stage}>
         <svg viewBox={`${VB.x} ${VB.y} ${VB.w} ${VB.h}`} role="img" aria-label={c.alt}>
-          <defs>
-            <radialGradient id="desk-dot">
-              <stop offset="0" stopColor="#fff" />
-              <stop offset=".35" stopColor="#fff" />
-              <stop offset=".6" stopColor="var(--glow)" />
-              <stop offset="1" stopColor="var(--glow)" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-
           {/* desk frame: feet and outer columns stay; the inner columns and top rise */}
           <Box b={box(12, 4, 0, 10, 72, 3)} />
           <Box b={box(138, 4, 0, 10, 72, 3)} />
@@ -516,7 +507,7 @@ export default function Desk({ c, words: text }: { c: Labels; words: string }) {
                             )}
                           </text>
                         ))}
-                        <circle className="scr-caret" cx={caret.x} cy={caret.y} r="1.1" fill="url(#desk-dot)" />
+                        <rect className="scr-caret" x={caret.x - 0.2} y={caret.y - 1.4} width="0.4" height="2.4" fill="var(--water)" />
                       </>
                     ) : (
                       <>
