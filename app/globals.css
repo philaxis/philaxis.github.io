@@ -3,7 +3,8 @@
   --ink: #0d1b2a;
   --muted: #5a6a7b;
   --line: #d5dde6;
-  --water: #1a8fc0;
+  /* 4.5:1 or more on --bg and on the demo panels (#1a8fc0 was 3.3:1) */
+  --water: #14719a;
   --glow: #4fd2f2;
 
   --serif: "Hahmlet", "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", serif;
@@ -15,13 +16,6 @@
   --gutter: clamp(20px, 5vw, 72px);
   --max: 1240px;
   --ease: cubic-bezier(0.2, 0.7, 0.1, 1);
-  --dot: radial-gradient(
-    circle,
-    #fff 0 24%,
-    var(--glow) 46%,
-    color-mix(in srgb, var(--water) 60%, transparent) 66%,
-    color-mix(in srgb, var(--water) 0%, transparent) 74%
-  );
   color-scheme: light dark;
 }
 
@@ -246,18 +240,15 @@ a:hover {
   vertical-align: baseline;
 }
 
+/* the cursor is a thin bar, like a text field's: no glowing dot (user rule 11-19) */
 .caret::after {
   content: "";
   position: absolute;
-  left: 0.1em;
-  bottom: 0.07em;
-  width: max(0.15em, 10px);
-  height: max(0.15em, 10px);
-  border-radius: 50%;
-  background: var(--dot);
-  box-shadow:
-    0 0 0.1em color-mix(in srgb, var(--water) 55%, transparent),
-    0 0 0.45em color-mix(in srgb, var(--glow) 50%, transparent);
+  left: 0.06em;
+  bottom: -0.08em;
+  width: max(0.05em, 2px);
+  height: 0.86em;
+  background: var(--water);
 }
 
 .wave {
@@ -310,10 +301,6 @@ a:hover {
 
 /* sections */
 
-.groups {
-  position: relative;
-}
-
 .sec {
   position: relative;
   padding-top: clamp(64px, 9vw, 120px);
@@ -334,8 +321,7 @@ a:hover {
   margin-bottom: clamp(36px, 5vw, 64px);
 }
 
-.verb,
-.cap-verb {
+.verb {
   font-family: var(--serif);
   font-weight: 300;
   font-size: clamp(30px, 3.4vw, 46px);
@@ -471,11 +457,6 @@ a:hover {
   border-radius: 12px;
   background: color-mix(in srgb, var(--ink) 2.5%, var(--bg));
   overflow: hidden;
-}
-
-.demo .caret::after {
-  width: 8px;
-  height: 8px;
 }
 
 .mulbit-demo {
@@ -774,9 +755,7 @@ a:hover {
 .flick-cell[aria-pressed="true"] .flick-desktop {
   border-color: var(--water);
   background: color-mix(in srgb, var(--glow) 14%, var(--bg));
-  box-shadow:
-    0 0 0 1px var(--water),
-    0 0 18px -2px color-mix(in srgb, var(--glow) 60%, transparent);
+  box-shadow: 0 0 0 1px var(--water);
 }
 
 .flick-cell[aria-pressed="true"] .flick-desktop span {
@@ -1683,118 +1662,10 @@ a:hover {
   animation-delay: calc(var(--i) * var(--step));
 }
 
-.t::after {
-  content: "";
-  position: absolute;
-  left: calc(100% + 0.06em);
-  bottom: 0.2em;
-  width: max(0.15em, 9px);
-  height: max(0.15em, 9px);
-  border-radius: 50%;
-  background: var(--dot);
-  box-shadow: 0 0 0.4em color-mix(in srgb, var(--glow) 50%, transparent);
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* the dot rides the newest character, then blinks a few times at the end and goes */
-.motion [data-in] .t:not(.sp)::after {
-  animation: pass var(--step) linear;
-  animation-delay: calc(var(--i) * var(--step));
-}
-
-.motion [data-in] .typed .t.end::after {
-  animation: settle 3.6s ease forwards;
-  animation-delay: calc(var(--i) * var(--step));
-}
-
-.motion [data-in] .stay .t.end::after {
-  animation:
-    show 0.01s forwards,
-    blink 2.4s ease-in-out infinite;
-  animation-delay: calc(var(--i) * var(--step));
-}
-
 @keyframes t-in {
   from {
     opacity: 0;
     filter: blur(4px);
-  }
-}
-
-@keyframes pass {
-  from,
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes show {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes settle {
-  0%,
-  40%,
-  80% {
-    opacity: 1;
-  }
-  20%,
-  60% {
-    opacity: 0.25;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* the thread and the travelling caret (desktop) */
-
-.thread {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(max(var(--gutter), (100% - var(--max)) / 2) - min(32px, var(--gutter) * 0.55));
-  width: 1px;
-  background: var(--line);
-}
-
-.thread-fill {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent, var(--water) 160px);
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-.traveller {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--dot);
-  box-shadow:
-    0 0 2px color-mix(in srgb, var(--water) 55%, transparent),
-    0 0 10px color-mix(in srgb, var(--glow) 55%, transparent);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  will-change: transform;
-}
-
-.traveller.parked {
-  animation: blink 2.4s ease-in-out infinite;
-}
-
-@media (min-width: 900px) {
-  /* the traveller types headings on desktop, so their own dots stay off */
-  .motion .verb .t::after {
-    display: none;
   }
 }
 
@@ -1823,11 +1694,6 @@ a:hover {
 /* narrow */
 
 @media (max-width: 899px) {
-  .thread,
-  .traveller {
-    display: none;
-  }
-
   .mulbit {
     grid-template-columns: minmax(0, 1fr);
   }

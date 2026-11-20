@@ -5,14 +5,14 @@ import type { CSSProperties } from "react";
 
 type Vars = CSSProperties & Record<`--${string}`, string | number>;
 
-/** Text typed character by character, with the caret dot riding the last typed char. */
-export function Typed({ text, step, stay = false }: { text: string; step: number; stay?: boolean }) {
+/** Text typed character by character. */
+export function Typed({ text, step }: { text: string; step: number }) {
   let i = 0;
   const words = text.split(" ");
   return (
     <>
       <span className="sr-only">{text}</span>
-      <span className={stay ? "typed stay" : "typed"} aria-hidden="true" style={{ "--step": `${step}ms` } as Vars}>
+      <span className="typed" aria-hidden="true" style={{ "--step": `${step}ms` } as Vars}>
         {words.map((w, wi) => (
           <span key={wi}>
             {wi > 0 && (
@@ -21,15 +21,11 @@ export function Typed({ text, step, stay = false }: { text: string; step: number
               </span>
             )}
             <span className="word">
-              {[...w].map((c, ci) => {
-                const n = i++;
-                const end = wi === words.length - 1 && ci === w.length - 1;
-                return (
-                  <span key={ci} className={end ? "t end" : "t"} style={{ "--i": n } as Vars}>
-                    {c}
-                  </span>
-                );
-              })}
+              {[...w].map((c, ci) => (
+                <span key={ci} className="t" style={{ "--i": i++ } as Vars}>
+                  {c}
+                </span>
+              ))}
             </span>
           </span>
         ))}
