@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     images: [{ url: avatar, width: 460, height: 460, alt: "philaxis" }],
   },
   twitter: { card: "summary", title, description, images: [avatar] },
+  // 네이버 서치어드바이저 소유 확인(사용자 11-20). 지우면 확인이 풀린다.
+  verification: { other: { "naver-site-verification": "f3efd122a412cf64996383630959dccdd7d956c6" } },
 };
 
 export const viewport: Viewport = {
